@@ -18,3 +18,5 @@ return view('editpage');
 });
 
 Route::resource('user', UserController::class);
+
+Route::get('/user/delete/{id}',[UserController::class,'destroy']);
