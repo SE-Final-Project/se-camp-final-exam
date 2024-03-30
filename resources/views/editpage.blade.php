@@ -60,6 +60,7 @@
 
                 <button type="submit" class="btn btn-info">Submit</button>
                 <a href="{{ route('user.index') }}" class="btn btn-default float-right">Cancel</a>
+                <button type="reset" class="btn btn-default float-right mr-2">Reset</button>
             </div>
             <!-- /.card-footer -->
         </form>
