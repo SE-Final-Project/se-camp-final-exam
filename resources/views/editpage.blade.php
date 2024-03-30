@@ -8,9 +8,10 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" action="{{ url('/update-user/'.$users->id) }}" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal" action="{{ url('/update-user/' . $users->id) }}" method="post"
+            enctype="multipart/form-data">
             @csrf
-            @method("put")
+            @method('put')
             <div class="card-body">
                 <div class="form-group row">
                     <label for="title" class="col-sm-2 col-form-label">Title</label>
@@ -27,13 +28,15 @@
                 <div class="form-group row">
                     <label for="name" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name" name="name" value="{{ $users->name }}">
+                        <input type="text" class="form-control" id="name" name="name"
+                            value="{{ $users->name }}">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="email" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="email" name="email" value="{{ $users->email }}">
+                        <input type="text" class="form-control" id="email" name="email"
+                            value="{{ $users->email }}">
                     </div>
                 </div>
                 <div class="form-group row">

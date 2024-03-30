@@ -34,11 +34,13 @@ class C_User extends Controller
     {
         return view('addpage');
     }
+    // การแก้ไขข้อมูล 65160222
     public function edit($id){
         $users = User::find($id);
         return view("editpage",compact('users'));
 
     }
+    // การแก้ไขข้อมูลเเละทำการอัพเดทบนหน้าเว็บ 65160222
     public function update(Request $request, $id)
     {
         $users = User::find($id);
@@ -56,16 +58,19 @@ class C_User extends Controller
         return redirect(url('/'));
     }
 
+    // การลบข้อมูล 65160222
     public function destroy($id)
     {
         $users = User::find($id);
         $users->delete();
 
-        DB::statement('SET @new_id = 0;');
-        DB::statement('UPDATE users SET id = @new_id:=@new_id+1');
-        DB::statement('ALTER TABLE users AUTO_INCREMENT = 1;');
+        // DB::statement('SET @new_id = 0;');
+        // DB::statement('UPDATE users SET id = @new_id:=@new_id+1');
+        // DB::statement('ALTER TABLE users AUTO_INCREMENT = 1;');
 
+        return response()->json(['success' => true]);
         return redirect('/');
+
     }
 
 }
