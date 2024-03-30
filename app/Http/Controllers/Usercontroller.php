@@ -6,9 +6,9 @@ use App\Models\User;
 use App\Models\Title;
 use Illuminate\Http\Request;
 
-class userController extends Controller {
+class UserController extends Controller {
     
-    public function index() {
+    public function id() {
         $users = User::with('title')->get();
 
         return view('homepage', ['users' => $users]);
@@ -42,40 +42,40 @@ class userController extends Controller {
         return view('addpage', compact('titles'));
     }
 
-    public function deleteUser($index) {
-        $user = User::findOrFail($index);
+    public function deleteUser($id) {
+        $user = User::findOrFail($id);
         $user->delete();
 
         return redirect()->route('home');
     }
 
-    public function editUser($index) {
-        $user = User::findOrFail($index);
+    public function editUser($id) {
+        $user = User::findOrFail($id);
         $titles = Title::all();
 
         return view('editpage', compact('user', 'titles'));
     }
 
-    public function updateUser(Request $req, $index) {
-        $validatedData = $req->validate([
+    public function updateUser(Request $request, $id) {
+        $validatedData = $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $index,
+            'email' => 'required|unique:users,email,' . $id,
             'password' => 'nullable',
-            'avatar' => 'nullable',
+            'avatar' => 'nullable|image',
             'title_id' => 'required',
         ]);
 
-        $user = User::findOrFail($index);
+        $user = User::findOrFail($id);
 
-        if ($req->hasFile('avatar')) {
-            $Avatar = $req->file('avatar');
-            $AvatarPath = $Avatar->store('public/avatars');
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $avatarPath = $avatar->store('public/avatars');
             $validatedData['avatar'] = basename($avatarPath);
         }
 
-        if ($req->isMethod('PUT')) {
+        if ($request->isMethod('PUT')) {
             $user->update($validatedData);
             return redirect()->route('home');
         }
     }
-}
+}    

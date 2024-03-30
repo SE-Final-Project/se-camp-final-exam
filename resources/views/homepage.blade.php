@@ -35,7 +35,7 @@
                         <form action="{{ route('delete.user', ['id' => $user->id]) }}" method="POST" style="display: inline-block;">
                             @csrf
                             @method('DELETE')
-                            <button type="input" class="btn btn-danger" onclick="c_delete({{ $user->id }})">Delete</button>
+                            <button type="button" class="btn btn-danger" onclick="c_Delete({{ $user->id }})">Delete</button>
                         </form>
                     </td>
                 </tr>
@@ -43,7 +43,7 @@
         </tbody>
     </table>
     <script>
-        function c_delete(userId) {
+        function c_Delete(userId) {
             Swal.fire({
                 title: "Are you sure?",
                 text: "You won't be able to revert this!",
@@ -59,10 +59,13 @@
                         type: 'DELETE',
                         data: {
                             _token: '{{ csrf_token() }}'
-                        }
+                        },
+                        success: function(response) {
+                            $('#row_' + userId).remove();
+                        },
                     });
-                    location.reload();
                 }
+                location.reload();
             });
         }
     </script>
