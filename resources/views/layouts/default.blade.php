@@ -80,7 +80,8 @@
     <script src="{{ url('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ url('assets/js/adminlte.min.js') }}"></script>
-
+    <!-- SweetAlert CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     @yield('js')
 </body>
 

@@ -1,3 +1,5 @@
+{{-- ชินธร สมบัติกำจรกุล 65160105 --}}
+
 @extends('layouts.default')
 
 @section('page_name', 'Add Users Data')
@@ -8,13 +10,46 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" action="{{ url('/') }}" method="post">
+        <form class="form-horizontal" action="{{ url('/add-user') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                 <div class="form-group row">
-                    <label for="input01" class="col-sm-2 col-form-label">Example Input</label>
+                    <label for="title" class="col-sm-2 col-form-label">Title</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="input01">
+                        <select class="form-control" id="title" name="title">
+                            <option value="คุณ">คุณ</option>
+                            <option value="เด็กชาย">เด็กชาย</option>
+                            <option value="นาง">นาง</option>
+                            <option value="นาย">นาย</option>
+                            <option value="นางสาว">นางสาว</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="input01" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" name="name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="input01" class="col-sm-2 col-form-label">email</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="email" name="email">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="input01" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="input01" class="col-sm-2 col-form-label">Avatar</label>
+                    <div class="col-sm-10">
+                        <div class="custom-file">
+                            <label class="custom-file-label"for="avatar">Choose file</label>
+                            <input type="file" class="custom-file-input form-control" aria-describedby="inputGroupFileAddon01" id="avatar" name="avatar">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -23,6 +58,7 @@
                 <button type="submit" class="btn btn-info">Submit</button>
                 <a href="{{ url('/') }}" class="btn btn-default float-right">Cancel</a>
                 <button type="reset" class="btn btn-default float-right mr-2">Reset</button>
+                {{-- ถ้ากด submit ข้อมูลก็จะ update แต่ถ้ากด cancel ก็จะกลับไปหน้าหลัก reset ก็จะหายทั้งหมด --}}
             </div>
             <!-- /.card-footer -->
         </form>
