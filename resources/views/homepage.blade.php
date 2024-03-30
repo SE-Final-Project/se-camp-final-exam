@@ -10,25 +10,32 @@
         <thead>
             <tr>
                 <td width="35px">#</td>
+                <td>Title</td>
                 <td>name</td>
                 <td>email</td>
                 <td>avatar</td>
-                <td>Title</td>
                 <td width="150px">Tools</td>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>name</td>
-                <td>email</td>
-                <td>avatar</td>
-                <td>Title</td>
-                <td>
-                    <a href="{{ url('/edit-user') }}" class="btn btn-warning">Edit</a>
-                    <button class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
+            @foreach ($user as $item)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $item->title }}</td>
+                    <td>{{ $item->name }}</td>
+                    <td>{{ $item->email }}</td>
+                    <td>{{ $item->avatar }}</td>
+                    <td>
+                        <a href="{{ url('/edit-user') }}" class="btn btn-warning">Edit</a>
+
+                        <form method="POST" action="{{ url('')}}" accept-charset="UTF-8" style="display:inline">
+                            {{ method_field('DELETE') }}
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-danger btn-sm" title="Delete User" onclick="return confirm("Confirm delete?")"><aria-hidden="true"></i> Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 @endsection

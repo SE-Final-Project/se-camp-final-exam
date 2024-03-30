@@ -1,10 +1,11 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
-Route::get('/', function () {
-    return view('homepage');
-});
+
+Route::resource("/", UserController::class);
 
 Route::get('/add-user', function () {
     return view('addpage');
