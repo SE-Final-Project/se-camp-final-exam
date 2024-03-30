@@ -42,7 +42,10 @@ class UserController extends Controller
         $m_user->name = $name;
         $m_user->email = $email;
         $m_user->password = $password;
-        $m_user->avatar = $request->file('avatar')->store('public/avatar');
+        if ($request->hasFile('avatar')) {
+            $m_user->avatar = $request->file('avatar')->store('public/avatar');
+        }
+        // $m_user->avatar = $request->file('avatar')->store('public/avatar');
 
         $m_title->save();
         $m_user->save();
@@ -78,7 +81,10 @@ class UserController extends Controller
         $m_user->name = $name;
         $m_user->email = $email;
         $m_user->password = $password;
-        $m_user->avatar = $request->file('avatar')->store('public/avatar');
+        if ($request->hasFile('avatar')) {
+            $m_user->avatar = $request->file('avatar')->store('public/avatar');
+        }
+
 
         $m_title->save();
         $m_user->save();

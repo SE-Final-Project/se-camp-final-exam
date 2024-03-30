@@ -48,13 +48,18 @@
                                 console.log("Title data:", titleData);
                                 console.log(user.avatar)
                                 var title = titleData[index % titleData.length];
+                                var avatarHtml = '';
+                                if (user.avatar === null) {
+                                    avatarHtml = '<td>ไม่มีรูป</td>';
+                                } else {
+                                    avatarHtml =
+                                        `<td><img src="{{ url('/storage') }}/${user.avatar.replace('public/', '')}" style="width: 50px; height: 50px"></td>`;
+                                }
                                 var value_my_tbody = `<tr>
                                             <td>${index + 1}.</td>
                                             <td>${user.name}</td>
                                             <td>${user.email}</td>
-                                            <td>
-                                            <img src="{{ url('/storage')}}/${user.avatar.replace('public/', '')}" style="width: 50px; height: 50px">
-                                            </td>
+                                            ${avatarHtml}
                                             <td>${title.tit_name}</td>
                                             <td>
                                                 <a href="{{ url('/edit-page/') }}/${user.id}">
