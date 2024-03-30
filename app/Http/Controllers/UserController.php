@@ -15,12 +15,12 @@ class UserController extends Controller
         return view('homepage',compact('Users','Titles'));//แสดงหน้าหลัก
     }
     function addUser(){
-        $Titles = Title::all();
+        $Titles = Title::orderBy('tit_order')->get();
         return view('addpage',compact('Titles'));//แสดงหน้าเพิ่ม
     }
     function editUser($id){//แสดงหน้าแก้ไข
         $user = User::where('id',$id)->first();
-        $Titles=Title::all();
+        $Titles=Title::orderBy('tit_order')->get();
         return view('editpage',compact('Titles'),compact('user'));//แนบไอดีเพื่อระบุUser
     }
     function createUser(Request $request){//เพิ่มUserใหม่
