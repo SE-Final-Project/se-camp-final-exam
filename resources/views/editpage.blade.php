@@ -8,14 +8,41 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" action="{{ url('/') }}" method="post">
+        <form class="form-horizontal" action={{ url('/update/' . $users['id']) }} method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                 <div class="form-group row">
-                    <label for="input01" class="col-sm-2 col-form-label">Example Input</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="input01">
+                    <label for="input-title" class="col-sm-2 col-form-label my-2">Title : </label>
+                    <div class="col-sm-10 ">
+                        <select class="form-control " value="{{ $users['title_id'] }}" name="input-title">
+                            <option value="1">นาย</option>
+                            <option value="2">นางสาว</option>
+                            <option value="3">นาง</option>
+                            <option value="4">คุณ</option>
+                        </select>
                     </div>
+
+                    {{--  <div class="col-sm-10">
+                        <input type="text" class="form-control" name="input-title" value="{{ $users['title_id'] }}">
+                    </div>  --}}
+                    <br>
+                    <label for="input-name" class="col-sm-2 col-form-label my-2">Name : </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="input-name" value="{{ $users['name'] }}">
+                    </div>
+                    <br>
+                    <label for="input-email" class="col-sm-2 col-form-label my-2">Email : </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="input-email" value="{{ $users['email'] }}">
+                    </div>
+                    <br>
+                    <label for="input-avatar" class="col-sm-2 col-form-label my-2">Avatar : </label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control" name="input-avatar" value="{{ $users['avatar'] }}">
+                    </div>
+                    <br>
+
+
                 </div>
             </div>
             <!-- /.card-body -->
