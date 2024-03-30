@@ -13,3 +13,5 @@ Route::get('/add-user', function () {
 Route::get('/edit-user', function () {
 return view('editpage');
 });
+
+Route::resource('homepage', UserController::class);
