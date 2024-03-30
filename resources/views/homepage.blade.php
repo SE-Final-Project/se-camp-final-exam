@@ -1,34 +1,45 @@
-@extends('layouts.default')
+@extends('layouts.default') <!-- ใช้เรียกใช้ layout default ของเว็บไซต์ -->
 
-@section('page_name', 'Users Data')
-@section('content')
-    <!-- CODE HERE -->
-    <div class="float-right pb-4">
-        <a href="{{ url('/add-user') }}" class="btn btn-success"> Add User </a>
+@section('page_name', 'Users Data') <!-- กำหนดชื่อหน้าเพจเป็น 'Users Data' -->
+
+@section('content') // เริ่มต้นส่วนของเนื้อหาหน้าเว็บ
+    <!-- CODE HERE --> <!-- ส่วนของโค้ดที่นำมาแสดงบนหน้าเว็บ -->
+
+    <div class="float-right pb-4"> <!-- สร้าง div ที่อยู่ด้านขวาของหน้าจอ พื้นหลังปุ่ม -->
+        <a href="/add-user" class="btn btn-success"> Add User </a> <!-- สร้างปุ่มเพื่อเพิ่มผู้ใช้ -->
     </div>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <td width="35px">#</td>
-                <td>name</td>
-                <td>email</td>
-                <td>avatar</td>
-                <td>Title</td>
-                <td width="150px">Tools</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>name</td>
-                <td>email</td>
-                <td>avatar</td>
-                <td>Title</td>
-                <td>
-                    <a href="{{ url('/edit-user') }}" class="btn btn-warning">Edit</a>
-                    <button class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-@endsection
+
+    <table class="table table-bordered"> <!-- สร้างตารางแสดงข้อมูลผู้ใช้ -->
+        <thead> <!-- เริ่มต้นส่วนหัวของตาราง -->
+            <tr> <!-- เริ่มต้นแถวหัวของตาราง -->
+                <td width="35px">#</td> <!-- คอลัมน์แสดงลำดับ -->
+                <td>name</td> <!-- คอลัมน์แสดงชื่อ -->
+                <td>email</td> <!-- คอลัมน์แสดงอีเมล -->
+                <td>avatar</td> <!-- คอลัมน์แสดงรูปโปรไฟล์ -->
+                <td>Title</td> <!-- คอลัมน์แสดงตำแหน่ง -->
+                <td width="150px">Tools</td> <!-- คอลัมน์แสดงเครื่องมือ -->
+            </tr> <!-- จบแถวหัวของตาราง -->
+        </thead> <!-- จบส่วนหัวของตาราง -->
+
+        <tbody> <!-- เริ่มต้นส่วนเนื้อหาของตาราง -->
+            <?php foreach($titles as $index => $data) { ?> <!-- วนลูปเพื่อแสดงข้อมูลในตาราง -->
+            <tr> <!-- เริ่มแถวของตาราง -->
+                <td>{{$index+1}}</td> <!-- แสดงลำดับของข้อมูล -->
+                <td>{{$data -> name}}</td> <!-- แสดงชื่อของผู้ใช้ -->
+                <td>{{$data -> email}}</td> <!-- แสดงอีเมลของผู้ใช้ -->
+                <td>{{$data -> avatar}}</td> <!-- แสดงรูปโปรไฟล์ของผู้ใช้ -->
+                <td>{{$data -> title_id}}</td> <!-- แสดงสรรพนามของผู้ใช้ -->
+                <td> <!-- เริ่มต้นส่วนเครื่องมือ -->
+                    <a href="/Home/{{$data -> id}}/edit" class="btn btn-warning">Edit</a> <!-- ปุ่มแก้ไขข้อมูล -->
+                    <form action="/Home/{{$data -> id}}" method = "POST"> <!-- ฟอร์มสำหรับลบข้อมูล -->
+                        @csrf <!-- ใส่ CSRF token -->
+                        @method("DELETE") <!-- ใช้เมธอด DELETE -->
+                        <button type = "submit" class="btn btn-danger">Delete</button> <!-- ปุ่มลบข้อมูล -->
+                    </form> <!-- จบฟอร์มสำหรับลบข้อมูล -->
+                </td> <!-- จบส่วนเครื่องมือ -->
+            </tr> <!-- จบแถวของตาราง -->
+            <?php } ?> <!-- จบวนลูป -->
+        </tbody> <!-- จบส่วนเนื้อหาของตาราง -->
+    </table> <!-- จบตาราง -->
+
+@endsection <!-- จบส่วนเนื้อหาหน้าเว็บ -->
