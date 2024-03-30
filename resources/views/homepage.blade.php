@@ -18,13 +18,13 @@
         </thead>
         <tbody>
             @foreach($users as $user)
-                <tr>
+                <tr> 
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
                         @if ($user->avatar)
-                             <img src="{{ asset('storage/' . $user->avatar) }}" alt="Avatar" style="max-width: 100px;">
+                            <img src="{{ asset($user->avatar) }}" width='50' height='50' class="img img-responsive" alt="">
                         @else
                             No Avatar
                         @endif

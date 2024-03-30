@@ -13,17 +13,17 @@ class UserController extends Controller
 {
     public function showHomePage()
     {
-        // Fetch user data from the database
+        //ดึงdataจากdatabase
         $users = User::all();
         
-        // Return the view with user data
+        //ไปหน้า homepage
         return view('homepage', ['users' => $users]);
     }
 
     public function showAddPage()
     {
-        $titles = Title::all();
-        // Return the view for adding a user
+        $titles = Title::orderBy('id')->get();
+
         return view('addpage', ['titles' => $titles]);
     }
 
@@ -40,7 +40,7 @@ class UserController extends Controller
 
     public function storeUser(Request $request)
     {
-        // Validate the form data
+
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'name' => 'required|string',
@@ -53,16 +53,20 @@ class UserController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
     
-        // Process and store the user data
+        //เก็บข้อมูล
         $user = new User();
         $user->title = $request->title;
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = bcrypt($request->password); // Hash the password for security
-        // Handle avatar upload if applicable
+        $user->password = bcrypt($request->password); //สร้างความปลอดภัยในการเก็บรหัส
+        //รับรูป
         if ($request->hasFile('avatar')) {
-            $avatarPath = $request->file('avatar')->store('avatars');
-            $user->avatar = $avatarPath;
+            $fileName = time().$request->file('avatar')->getClientOriginalName();
+            $avatarPath = $request->file('avatar')->storeAs('avatars',$fileName,'public');
+            $user->avatar = '/storage/'.$avatarPath;
+        } else{
+            //หากไม่มีการใส่ให้เป็น null
+            $user -> avatar = null;
         }
         $user->save();
     
@@ -72,7 +76,7 @@ class UserController extends Controller
     
 
     public function updateUser(Request $request, $id){
-        // Validate the form data
+
         $validatedData = $request->validate([
             'title' => 'required',
                 'name' => 'required|string',
@@ -81,36 +85,38 @@ class UserController extends Controller
             'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Example validation rule for avatar upload
         ]);
 
-        // Find the user by ID
+        //หา ID user
         $user = User::findOrFail($id);
 
-        // Update the user data
+        //อัพเดท
         $user->title = $validatedData['title'];
         $user->name = $validatedData['name'];
         $user->email = $validatedData['email'];
             if ($request->filled('password')) {
             $user->password = bcrypt($validatedData['password']); // Hash the password for security
             }
-        // Handle avatar upload if applicable
+        //อัพโหลดหากมีการเก็บรูป
         if ($request->hasFile('avatar')) {
-            $avatarPath = $request->file('avatar')->store('avatars');
-            $user->avatar = $avatarPath;
+            $fileName = time().$request->file('avatar')->getClientOriginalName();
+            $avatarPath = $request->file('avatar')->storeAs('avatars',$fileName,'public');
+            $user->avatar = '/storage/'.$avatarPath;
+        } else{
+            //หากไม่มีการใส่ให้เป็น null
+            $user -> avatar = null;
         }
         $user->save();
 
-        // Redirect the user after successful update
+        //กลับหน้าHomepage
         return redirect()->route('homepage')->with('success', 'User updated successfully!');
     }
 
     public function deleteUser($id)
     {
-    // Find the user by ID
     $user = User::findOrFail($id);
     
-    // Delete the user
     $user->delete();
     
-    // Redirect back to the homepage with a success message
+    //กลับหน้าHomepage
     return redirect()->route('homepage')->with('success', 'User deleted successfully.');
     }
 
