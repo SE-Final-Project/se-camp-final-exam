@@ -12,9 +12,39 @@
             @csrf
             <div class="card-body">
                 <div class="form-group row">
-                    <label for="input01" class="col-sm-2 col-form-label">Example Input</label>
+                    <label for="input01" class="col-sm-2 col-form-label">Title</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="input01">
+                        <input type="select" class="form-control" id="input01">
+                            <tr>
+                                <td>
+                                    <select>
+                                    <option
+                                    value=""
+                                    disabled
+                                    selected>เลือก</option>
+                                    <option>คุณ</option>
+                                    <option>นาย</option>
+                                    <option>นาง</option>
+                                    <option>นางสาว</option>
+                                    </select>
+                                </td>
+                            </tr>
+                    </div>
+                    <label for="input02" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="input02">
+                    </div>
+                    <label for="input03" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="input03">
+                    </div>
+                    <label for="input04" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="input04">
+                    </div>
+                    <label for="input05" class="col-sm-2 col-form-label">Avatar</label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control" id="input05">
                     </div>
                 </div>
             </div>
