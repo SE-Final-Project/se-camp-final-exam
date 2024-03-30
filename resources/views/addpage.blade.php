@@ -16,7 +16,7 @@
                     <div class="col-sm-10">
                         <select class="form-control" id="title" name="title">
                             <option value="">Select Title</option>
-                            @foreach($titles as $title)
+                            @foreach($titles->sortBy('tit_order') as $title)
                                 <option value="{{ $title->tit_name }}">{{ $title->tit_name }}</option>
                             @endforeach
                         </select>
