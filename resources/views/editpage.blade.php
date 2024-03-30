@@ -10,7 +10,7 @@
     <!-- Form start -->
     <form class="form-horizontal" action="{{ route('update-user', ['id' => $user->id]) }}" method="post" enctype="multipart/form-data">
         @csrf
-        @method('PUT') <!-- Use PUT method for updates -->
+        @method('PUT')
         <div class="card-body">
             <div class="form-group row">
                 <label for="title" class="col-sm-2 col-form-label">Title</label>
@@ -18,12 +18,11 @@
                     <select class="form-control" id="title" name="title">
                         <option value="">Select Title</option>
                         @foreach($titles->sortBy('tit_order') as $title)
-                        <option value="{{ $title->tit_name }}">{{ $title->tit_name }}</option>
+                            <option value="{{ $title->id }}">{{ $title->tit_name }}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
-            <!-- Other form fields with pre-populated values from $user -->
             <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">

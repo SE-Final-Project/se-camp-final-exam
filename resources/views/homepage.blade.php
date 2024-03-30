@@ -29,7 +29,7 @@
                             No Avatar
                         @endif
                     </td>
-                    <td>{{ $user->title }}</td>
+                    <td>{{ $user->title->tit_name }}</td>
                     <td>
                         <a href="{{ url('/edit-user/'.$user->id) }}" class="btn btn-warning">Edit</a>
                         <!-- Add delete functionality -->

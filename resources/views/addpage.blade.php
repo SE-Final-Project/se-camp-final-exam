@@ -14,10 +14,10 @@
                 <div class="form-group row">
                     <label for="title" class="col-sm-2 col-form-label">Title</label>
                     <div class="col-sm-10">
-                        <select class="form-control" id="title" name="title">
+                        <select class="form-control" id="title_id" name="title_id">
                             <option value="">Select Title</option>
                             @foreach($titles->sortBy('tit_order') as $title)
-                                <option value="{{ $title->tit_name }}">{{ $title->tit_name }}</option>
+                                <option value="{{ $title->id }}">{{ $title->tit_name }}</option>
                             @endforeach
                         </select>
                     </div>
