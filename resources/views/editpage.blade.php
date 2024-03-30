@@ -8,20 +8,44 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" action="{{ url('/') }}" method="post">
+        <form class="form-horizontal" action="{{ route('user.update',$user->id) }}" method="post" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="card-body">
                 <div class="form-group row">
-                    <label for="input01" class="col-sm-2 col-form-label">Example Input</label>
+                    <label for="input_title" class="col-sm-2 col-form-label">Title</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="input01">
+                        <select class="form-control" id="input_title" name="title">
+                            @foreach ($titles as $title)
+                                <option value="{{ $title->id }}">{{ $title->tit_name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label for="input_name" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="input_name" name="name" value="{{$user->name}}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="input_email" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="input_email" name="email" value="{{$user->email}}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="input_avatar" class="col-sm-2 col-form-label">Avatar</label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control-file" id="input_avatar" name="avatar">
+                    </div>
+                </div>
+            </div>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
                 <button type="submit" class="btn btn-info">Submit</button>
-                <a href="{{ url('/') }}" class="btn btn-default float-right">Cancel</a>
+                <a href="{{ route('user.index') }}" class="btn btn-default float-right">Cancel</a>
             </div>
             <!-- /.card-footer -->
         </form>
