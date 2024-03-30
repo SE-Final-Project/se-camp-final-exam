@@ -25,7 +25,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>Title</td>
+                <td></td>
                 <td>
                     <a href="{{ url('/edit-user') }}" class="btn btn-warning">Edit</a>
                     <button class="btn btn-danger">Delete</button>
