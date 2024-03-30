@@ -92,7 +92,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $data['users'] = User::find($id);
+        $data['user_lists'] = User::find($id);
         $data['title_lists'] = Title::orderBy('id', 'asc')->get();
 
         return view('editpage', $data);

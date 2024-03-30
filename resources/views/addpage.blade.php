@@ -12,7 +12,7 @@
 
     {{-- enctype="multipart/form-data --}}
     <!-- form start -->
-    <form class="form-horizontal" action="{{ url("/add-page") }}" method="POST" enctype="multipart/form-data">
+    <form id="myForm" class="form-horizontal" action="{{ url("/add-page") }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="card-body">
 
@@ -91,14 +91,13 @@
     </script>
 
     <script>
-        function validateForm() {
-            var title = document.getElementById('title');
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            var title = document.getElementById("title");
             if (title.value === '') {
-                title.classList.add('is-invalid');
-            } else {
-                title.classList.remove('is-invalid');
+                event.preventDefault(); // ป้องกันการส่งฟอร์ม
+                alert("กรุณาเลือก Title");
             }
-        }
+        });
     </script>
 
 @endsection

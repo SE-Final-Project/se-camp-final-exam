@@ -8,7 +8,7 @@
         <h3 class="card-title">Edit User Form</h3>
     </div>
 
-    <form class="form-horizontal" action="{{ url("/edit-page/$users->id") }}" method="POST" enctype="multipart/form-data">
+    <form class="form-horizontal" action="{{ url("/edit-page/$user_lists->id") }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="card-body">
@@ -18,7 +18,7 @@
                     <select class="form-control" id="edit-title" name="edit-title">
                         <option disabled>Choose Title...</option>
                         @foreach ($title_lists as $title_list)
-                        <option value="{{ $title_list->id }}" {{ $title_list->id == $users->title_id ? 'selected' : '' }}>
+                        <option value="{{ $title_list->id }}" {{ $title_list->id == $user_lists->title_id ? 'selected' : '' }}>
                             {{ $title_list->tit_name }}
                         </option>
                         @endforeach
@@ -32,7 +32,7 @@
             <div class="form-group row">
                 <label for="edit-name" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
-                    <input type="text" name="edit-name" class="form-control" id="edit-name" value="{{ $users->name }}">
+                    <input type="text" name="edit-name" class="form-control" id="edit-name" value="{{ $user_lists->name }}">
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
             <div class="form-group row">
                 <label for="edit-email" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                    <input type="type" name="edit-email" class="form-control" id="edit-email" value="{{ $users->email }}">
+                    <input type="type" name="edit-email" class="form-control" id="edit-email" value="{{ $user_lists->email }}">
                 </div>
             </div>
         </div>
@@ -51,14 +51,17 @@
                 <label for="edit-avatar" class="col-sm-2 col-form-label">Avatar</label>
                 <div class="col-sm-10">
                     <div class="custom-file">
-                        <input type="file" name="edit-avatar" class="custom-file-input" id="edit-avatar">
-                        <label class="custom-file-label" for="edit-avatar">Choose File...</label>
+                        @if($user_lists->avatar == null)
+                            <input type="file" name="edit-avatar" class="custom-file-input" id="edit-avatar">
+                            <label class="custom-file-label" for="edit-avatar">Choose File...</label>
+                        @else
+                            <input type="file" name="edit-avatar" class="custom-file-input" id="edit-avatar" src="{{ $user_lists->avatar }}">
+                            <label class="custom-file-label" for="edit-avatar">{{ $user_lists->avatar }}</label>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
-
-
 
         <div class="card-footer">
             <button type="submit" class="btn btn-info">Submit</button>
@@ -76,5 +79,21 @@
         label.textContent = fileName;
     });
 </script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var editAvatarInput = document.getElementById('edit-avatar');
+        var defaultAvatarFileName = '{{ $user_lists->avatar }}'; // ชื่อไฟล์เริ่มต้นที่ต้องการ
+
+        // เช็คว่า input file มีรูปภาพหรือไม่
+        if (!editAvatarInput.files || !editAvatarInput.files[0]) {
+            // กำหนดชื่อไฟล์เริ่มต้นให้กับ input file
+            editAvatarInput.nextElementSibling.innerHTML = defaultAvatarFileName;
+        }
+    });
+</script>
+
+
 
 @endsection
