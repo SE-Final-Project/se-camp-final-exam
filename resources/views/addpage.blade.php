@@ -12,7 +12,46 @@
             @csrf
             <div class="card-body">
                 <div class="form-group row">
-                    <label for="input01" class="col-sm-2 col-form-label">Example Input</label>
+                    <label for="input01" class="col-sm-2 col-form-label">Title</label>
+                    <div class="col-sm-10">
+                        <select class="form-control">
+                            <option>คุณ</option>
+                            <option>นาย</option>
+                            <option>นางสาว</option>
+                            <option>นาง</option>
+                            <option>เด็กชาย</option>
+                            <option>เด็กหญิง</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="form-group row">
+                    <label for="input01" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="input01">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="form-group row">
+                    <label for="input01" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="input01">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="form-group row">
+                    <label for="input01" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="input01">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="form-group row">
+                    <label for="input01" class="col-sm-2 col-form-label">Avatar</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="input01">
                     </div>
