@@ -1,40 +1,87 @@
 <?php
- 
+
 namespace App\Http\Controllers;
- 
-use App\Models\User;
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
- 
+use App\Models\User;
+use App\Models\Title;
+
 class UserController extends Controller
 {
-    function home_view(){
-        return view('homepage');
-    }
- 
-    function add_view(){
-        return view('addpage');
+    public function index()
+    {
+        $users = User::orderBy('id', 'asc')->get();
+        return view('homepage', compact('users'));
     }
 
-    function edit_view(){
-        return view('editpage');
+    public function create()
+    {
+        $titles = Title::orderBy('id', 'asc')->get();
+        return view('addpage', compact('titles'));
     }
- 
-    function add_process(Request $req){
-        $req->validate([
-        'title' => 'required',
-        'name' => 'required',
-        'email' => 'required|email|unique:users',
-        'password' => 'required|min:6|confirmed',
-        'avatar' => 'required',
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required'
         ]);
- 
-        $data = $req->all();
-        print_r($data);
-        die;
 
-        User::create($data);
- 
-        return Redirect::to('homepage');
+        $user = new User;
+        $user->title_id = $request->title;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+
+        if ($request->hasFile("avatar")) {
+            $file = $request->file("avatar");
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . "." . $extension;
+            $file->move("onload/user/", $filename);
+            $user->avatar = $filename;
+        }
+
+        $user->save();
+
+        return redirect()->route("user.index")->with("success", "User created successfully.");
+    }
+
+    public function edit(User $user)
+    {
+        $titles = Title::orderBy('id', 'asc')->get();
+        return view("editpage", compact("user", "titles"));
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $request->validate([
+            "title" => "required",
+            "name" => "required",
+            "email" => "required",
+        ]);
+
+        $user->title_id = $request->title;
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('onload/user/', $filename);
+            $user->avatar = $filename;
+        }
+
+        $user->save();
+
+        return redirect()->route("user.index")->with("success", "User updated successfully.");
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect()->route("user.index")->with("success", "User deleted successfully.");
     }
 }
