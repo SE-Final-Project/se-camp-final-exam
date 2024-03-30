@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\File;
 Use Illuminate\Support\Facades\DB;
 class C_User extends Controller
 {
+    // การเก็บค่าตัวแปรต่างๆโดยรับค่ารีเควสจากที่เรากรอกข้อมูลเเล้วแสดงข้อมูล
     public function store(Request $request)
     {
         $user = new User;
@@ -24,7 +25,7 @@ class C_User extends Controller
         }
         return redirect(url('/'));
     }
-
+    // เก็บค่าข้อมูลเเละส่งกลับไปยัง homepage
     public function index()
     {
         $users = User::all();
