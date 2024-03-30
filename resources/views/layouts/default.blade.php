@@ -25,7 +25,7 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{ url('/') }}" class="nav-link">Home</a>
+                    <a href="{{ route('users.index') }}" class="nav-link">Home</a>
                 </li>
             </ul>
         </nav>
@@ -42,7 +42,7 @@
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('users.index') }}">Home</a></li>
                                 <li class="breadcrumb-item active">@yield('page_name')</li>
                             </ol>
                         </div><!-- /.col -->
@@ -52,6 +52,7 @@
             <!-- /.content-header -->
 
             <!-- Main content -->
+
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
