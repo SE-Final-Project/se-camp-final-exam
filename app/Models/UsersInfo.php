@@ -1,14 +1,17 @@
 <?php
 
+
+
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class UsersInfo extends Model
 {
+    protected $table = 'usersInfo';
     use HasFactory, Notifiable;
 
     /**
@@ -17,11 +20,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
+        'titles',
         'name',
         'email',
-        'password',
-        'title_id',
         'avatar',
+        'password'
     ];
 
     public function title()
@@ -51,4 +55,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public $timestamps = false;
+    protected $primaryKey = 'id';
+    public $incrementing = true;
 }
