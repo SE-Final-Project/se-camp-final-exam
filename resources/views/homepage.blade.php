@@ -18,7 +18,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            {{-- <tr>
                 <td>1</td>
                 <td>name</td>
                 <td>email</td>
@@ -28,7 +28,30 @@
                     <a href="{{ url('/edit-user') }}" class="btn btn-warning">Edit</a>
                     <button class="btn btn-danger">Delete</button>
                 </td>
-            </tr>
+            </tr> --}}
+
+            @foreach ($users as $data => $key)
+                <tr>
+                    <td>{{ $data + 1 }}</td>
+                    <td>{{ $key->name }}</td>
+                    <td>{{ $key->email }}</td>
+                    <td>
+                        @if ($key->avatar)
+                            <img src="{{ asset('storage/' . $key->avatar) }}" width="100px">
+                        @endif
+                    </td>
+                    <td>{{ $key->tit_name }}</td>
+                    <td>
+                        <a href="{{ url('/edit-user') }}/{{ $key->id }}" class="btn btn-warning">Edit</a>
+                        {{-- <button class="btn btn-danger">Delete</button> --}}
+
+                        <a href="{{ url('/delete-user') }}/{{ $key->id }}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            @endforeach
+
+
+
         </tbody>
     </table>
 @endsection
