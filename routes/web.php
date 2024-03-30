@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+
+
 
 Route::get('/', function () {
     return view('homepage');
@@ -13,3 +16,7 @@ Route::get('/add-user', function () {
 Route::get('/edit-user', function () {
 return view('editpage');
 });
+
+Route::resource('user', UserController::class);
+
+Route::get('/user/delete/{id}',[UserController::class,'destroy']);
