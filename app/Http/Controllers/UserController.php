@@ -76,6 +76,7 @@ class UserController extends Controller
             "title"=> "required",
             "name"=> "required",
             "email"=> "required",
+            "password"=> "required",
         ]);
 
         $user = User::findOrFail($id);
