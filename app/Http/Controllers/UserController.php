@@ -72,34 +72,34 @@ class UserController extends Controller
     
 
     public function updateUser(Request $request, $id){
-    // Validate the form data
-    $validatedData = $request->validate([
-        'title' => 'required',
-        'name' => 'required|string',
-        'email' => 'required|email|unique:users,email,'.$id,
-        'password' => 'nullable|min:6', // Allow password to be nullable
-        'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Example validation rule for avatar upload
-    ]);
+        // Validate the form data
+        $validatedData = $request->validate([
+            'title' => 'required',
+                'name' => 'required|string',
+            'email' => 'required|email|unique:users,email,'.$id,
+            'password' => 'nullable|min:6', // Allow password to be nullable
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Example validation rule for avatar upload
+        ]);
 
-    // Find the user by ID
-    $user = User::findOrFail($id);
+        // Find the user by ID
+        $user = User::findOrFail($id);
 
-    // Update the user data
-    $user->title = $validatedData['title'];
-    $user->name = $validatedData['name'];
-    $user->email = $validatedData['email'];
-    if ($request->filled('password')) {
-        $user->password = bcrypt($validatedData['password']); // Hash the password for security
-    }
-    // Handle avatar upload if applicable
-    if ($request->hasFile('avatar')) {
-        $avatarPath = $request->file('avatar')->store('avatars');
-        $user->avatar = $avatarPath;
-    }
-    $user->save();
+        // Update the user data
+        $user->title = $validatedData['title'];
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+            if ($request->filled('password')) {
+            $user->password = bcrypt($validatedData['password']); // Hash the password for security
+            }
+        // Handle avatar upload if applicable
+        if ($request->hasFile('avatar')) {
+            $avatarPath = $request->file('avatar')->store('avatars');
+            $user->avatar = $avatarPath;
+        }
+        $user->save();
 
-    // Redirect the user after successful update
-    return redirect()->route('homepage')->with('success', 'User updated successfully!');
+        // Redirect the user after successful update
+        return redirect()->route('homepage')->with('success', 'User updated successfully!');
     }
 
     public function deleteUser($id)
