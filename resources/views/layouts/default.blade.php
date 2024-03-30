@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="{{ url('assets/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('assets/css/adminlte.min.css') }}">
-
     @yield('css')
 </head>
 
@@ -81,6 +80,7 @@
     <!-- AdminLTE App -->
     <script src="{{ url('assets/js/adminlte.min.js') }}"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @yield('js')
 </body>
 
