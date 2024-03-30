@@ -14,6 +14,9 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('assets/css/adminlte.min.css') }}">
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     @yield('css')
 </head>
 
