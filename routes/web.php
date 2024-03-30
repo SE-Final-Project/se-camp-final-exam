@@ -1,15 +1,12 @@
 <?php
 
+// 65160244 Audomsuk 65160244 Audomsuk 65160244 Audomsuk 65160244 Audomsuk 65160244 Audomsuk 65160244 Audomsuk 65160244 Audomsuk 65160244 Audomsuk
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
-Route::get('/', function () {
-    return view('homepage');
-});
+Route::get('/', [UserController::class, 'index'])->name('homepage');
 
-Route::get('/add-user', function () {
-    return view('addpage');
-});
+Route::resource('user', UserController::class);
 
-Route::get('/edit-user', function () {
-return view('editpage');
-});
+// 65160244 Audomsuk 65160244 Audomsuk 65160244 Audomsuk 65160244 Audomsuk 65160244 Audomsuk 65160244 Audomsuk 65160244 Audomsuk 65160244 Audomsuk
