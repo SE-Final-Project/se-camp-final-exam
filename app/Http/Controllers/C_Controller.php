@@ -73,10 +73,6 @@ class C_Controller extends Controller
         $Users->delete();
         //เป็นการลบโดยจะหา ตำแหน่งที่ตรงกับ id ที่จะลบแล้วก็ทำการลบ
 
-        DB::statement('SET @new_id = 0;');
-        DB::statement('UPDATE users SET id = @new_id:=@new_id+1');
-        DB::statement('ALTER TABLE users AUTO_INCREMENT = 1;');
-        // เป็นการเรียงลำดับ ของ id ใน database
         return response()->json(['success' => true]);
         //เมื่อทำทุกอย่างแล้ว จะคือค่า value ของ success เป็น true
     }
