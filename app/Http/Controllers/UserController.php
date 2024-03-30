@@ -124,7 +124,11 @@ class UserController extends Controller
 
             $path = 'uploads/category/';
             $file->move($path, $user_avatar);
+        }else {
+            $path = $user_list->avatar;
+            $user_avatar = null;
         }
+
 
         $user_list->avatar = $path.$user_avatar;
         $user_list->save();
