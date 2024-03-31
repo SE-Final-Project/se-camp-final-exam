@@ -52,7 +52,6 @@
 
                     <td>
                         <a href="{{ url('/edit-user/' . $User->id) }}" class="btn btn-warning">Edit</a>
-                        <!-- Add delete functionality -->
                         <form method="post" action="{{ url('/delete-user/' . $User->id) }}" style="display: inline-block;">
                             @csrf
                             @method('DELETE')

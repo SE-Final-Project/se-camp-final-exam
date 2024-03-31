@@ -87,8 +87,6 @@ class UserController extends Controller
             $user -> avatar = null;
         }
         $user->save();
-
-
         return redirect()->route('homepage')->with('success','company has been updated successfully');
     }
 
