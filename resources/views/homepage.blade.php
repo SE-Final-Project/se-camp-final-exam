@@ -25,7 +25,7 @@
                     @if($title)
                         <td>{{ $title->tit_name }}</td>
                     @else
-                        //
+                        //{{ "ไม่ได้กำหนด" }}
                     @endif
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>

@@ -65,7 +65,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        //รับรูป
+        //image
         if ($request->hasFile('avatar')) {
             $fileName = time().$request->file('avatar')->getClientOriginalName();
             $avatarPath = $request->file('avatar')->storeAs('avatars',$fileName,'public');
