@@ -40,9 +40,12 @@
                 <div class="form-group row">
                     <label for="avatar" class="col-sm-2 col-form-label">Avatar</label>
                     <div class="col-sm-10">
-                        <div class="custom-file">
-                            <input type="file" name="avatar" class="custom-file-input" id="avatar" onchange="previewImage(this)"placeholder="Enter avatar" value="{{ $User->avatar }}">
-                            <label class="custom-file-label" for="avatar" id="avatarLabel">Choose file</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" name="avatar" class="custom-file-input" id="avatar" onchange="previewImage(this)">
+                                <label class="custom-file-label" for="avatar" id="avatarLabel">Choose file</label>
+                            </div>
+
                         </div>
                         <img id="imagePreview" src="#" alt="Preview" style="display: none; max-width: 100px; max-height: 100px;">
                     </div>
@@ -64,8 +67,6 @@
                         reader.readAsDataURL(file);
                     }
                 </script>
-
-
             </div>
             <!-- /.card-body -->
             <div class="card-footer">

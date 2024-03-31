@@ -47,9 +47,34 @@
                 <div class="form-group row">
                     <label for="avatar" class="col-sm-2 col-form-label">Avatar</label>
                     <div class="col-sm-10">
-                        <input type="file" class="form-control-file" id="avatar" name="avatar">
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" name="avatar" class="custom-file-input" id="avatar" onchange="previewImage(this)">
+                                <label class="custom-file-label" for="avatar" id="avatarLabel">Choose file</label>
+                            </div>
+
+                        </div>
+                        <img id="imagePreview" src="#" alt="Preview" style="display: none; max-width: 100px; max-height: 100px;">
                     </div>
                 </div>
+                <script>
+                    function previewImage(input) {
+                        var file = input.files[0];
+                        var reader = new FileReader();
+
+                        reader.onload = function(e) {
+                            var imagePreview = document.getElementById('imagePreview');
+                            var avatarLabel = document.getElementById('avatarLabel');
+
+                            imagePreview.src = e.target.result;
+                            imagePreview.style.display = 'block';
+                            avatarLabel.textContent = file.name;
+                        };
+
+                        reader.readAsDataURL(file);
+                    }
+                </script>
+
 
 
             </div>
