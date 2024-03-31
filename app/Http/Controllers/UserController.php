@@ -7,15 +7,16 @@ use App\Models\Title;
 use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Http\Request;
 
-
+/**
+ * 65160208 kittipoom yutanava
+ */
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        $user_list = User::paginate(10);
+        //
+        $user_list = User::all();
         return view('homepage', compact('user_list'));
     }
 
@@ -24,11 +25,10 @@ class UserController extends Controller
         return view('addpage');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // สร้างฟังก์ชันสร้าง User
     public function create(Request $request)
     {
+        //สร้างตัวแปรมาเก็บข้อมูลในฟอร์ม
         $title = $request->input('title');
         $name = $request->input('name');
         $email = $request->input('email');
@@ -37,6 +37,7 @@ class UserController extends Controller
 
         $title = Title::firstOrCreate(['tit_name' => $title]);
 
+        // สร้าง model ของ User ในการเก็บตัวแปรที่รับมา
         $user = new User;
         $user->title_id = $title->id;
         $user->name = $name;
@@ -44,14 +45,17 @@ class UserController extends Controller
         $user->password = $password;
         $avatarPath = $avatar;
         $user->avatar = $avatarPath;
+
+        // ถ้ามีการแนบรูปภาพมา
         if ($avatar) {
             $avatarPath = $avatar->store('public/avatars');
             $avatarPath = str_replace("public", "storage", $avatarPath);
             $user->avatar = $avatarPath;
         }
+        $user->save();
+
 
         // dd($avatarPath);
-        $user->save();
         return redirect('/');
     }
 
@@ -71,16 +75,19 @@ class UserController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    // ฟังก์ชั้นของหน้า edit
     public function edit(string $id)
     {
+        //65160208 kittipoom
+        // หาข้อมูลของ User ที่ตรงกับ $id มาเก็บในตัวแปร $user
         $user = User::findOrFail($id);
-        // dd($user->title_id);
+        // นำข้อมูลทั้งหมดใน title มาเก็บในตัวแปร $titles
         $titles = Title::all();
-        // dd($titles , $user);
+
+        // ให้แสดงหน้า view ของ editpage.blade.php โดยส่ง ตัวแปร user กับ titles ไปด้วย
         return view('editpage', compact('user', 'titles'));
+        // dd($user->title_id);
+        // dd($titles , $user);
     }
 
     /**
@@ -88,12 +95,13 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        //ผมขี้เกียจ comment แล้วครับอาจารย์ 65160208 กิตติภูมิ
         $titleId = $request->input('title');
         $name = $request->input('name');
         $email = $request->input('email');
 
         $user = User::findOrFail($id);
-        $user->title_id = $titleId; 
+        $user->title_id = $titleId;
         $user->name = $name;
         $user->email = $email;
         $user->save();
