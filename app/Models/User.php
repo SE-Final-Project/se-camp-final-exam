@@ -16,6 +16,10 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+
+    protected $table = 'final'; //  65160209 กุสมา create table in database
+
     protected $fillable = [
         'name',
         'email',

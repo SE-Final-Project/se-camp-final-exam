@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ url('assets/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('assets/css/adminlte.min.css') }}">
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"> </script>
     @yield('css')
 </head>
 
