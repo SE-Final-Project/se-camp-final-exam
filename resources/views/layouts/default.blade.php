@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SE CAMP</title>
 
-    <!-- Google Font: Source Sans Pro -->
+    <!-- Google Font:family-Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome Icons -->
+    <!-- Font awesome -->
     <link rel="stylesheet" href="{{ url('assets/plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- Theme style -->
+    <!-- style -->
     <link rel="stylesheet" href="{{ url('assets/css/adminlte.min.css') }}">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @yield('css')
 </head>
 
@@ -33,7 +34,7 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper" style="margin-left: 10px;">
-            <!-- Content Header (Page header) -->
+            <!-- Content Header on Page header -->
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
