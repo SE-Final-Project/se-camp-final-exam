@@ -8,13 +8,42 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" action="{{ url('/') }}" method="post">
+        <form class="form-horizontal" action="{{ url('/insertuser') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                 <div class="form-group row">
-                    <label for="input01" class="col-sm-2 col-form-label">Example Input</label>
+                    <label for="title" class="col-sm-2 col-form-label">Title</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="input01">
+                        <select name="title" id="title" class="form-control">
+                            <option value="นาย">นาย</option>
+                            <option value="นางสาว">นางสาว</option>
+                            <option value="นาง">นาง</option>
+                            <option value="คุณ">คุณ</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" name="name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="email" name="email">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="password" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="avatar" class="col-sm-2 col-form-label">Avatar</label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control-file" id="avatar" name="avatar">
                     </div>
                 </div>
             </div>
