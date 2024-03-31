@@ -19,8 +19,8 @@
                             @foreach ($titles as $title)
                                 <option value="{{$title->id}}">{{ $title->tit_name}}</option>
                             @endforeach
-//ดึงข้อมูลจากฐานข้อมูลมาใช้ คุณ นาย นาง นางสาว แล้วแสดง
 
+{{-- ดึงข้อมูลจากฐานข้อมูลมาใช้ คุณ นาย นาง นางสาว แล้วแสดง --}}
                         </select>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                             name="name">
                     </div>
                 </div>
-//แสดงให้กรอกชื่อ
+ {{-- แสดงให้กรอกชื่อ  --}}
                 <div class="form-group row">
                     <label for="email" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
@@ -40,7 +40,7 @@
                             placeholder="กรอกอีเมล" id="email" name="email">
                     </div>
                 </div>
-//แสดงให้กรอกอีเมล
+{{-- แสดงให้กรอกอีเมล  --}}
                 <div class="form-group row">
                     <label for="password" class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-10">
@@ -48,7 +48,7 @@
                         <input type="password" class="form-control" placeholder="กรอกรหัสผ่าน" id="password" name="password">
                     </div>
                 </div>
-//แสดงให้กรอกรหัสผ่าน แบบปิด
+ {{-- แสดงให้กรอกรหัสผ่าน แบบปิด   --}}
                 <div class="form-group row">
                     <label for="avatar" class="col-sm-2 col-form-label">Avatar</label>
                     <div class="col-sm-10">
@@ -63,7 +63,7 @@
                         <img id="preview" src="#" alt="Preview" style="max-width: 100px; max-height: 100px;">
                     </div>
                 </div>
-//ยืนยันการกรอกข้อมูล  ***แถม
+ ***แถม {{-- ยืนยันการกรอกข้อมูล  ***แถม--}}
                 <script>
                     function previewImage(input) {
                         var file = input.files[0];
