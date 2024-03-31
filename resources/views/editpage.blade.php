@@ -17,7 +17,10 @@
                 <div class="col-sm-10">
                     <select class="form-control" id="edit-title" name="edit-title">
                         <option disabled>Choose Title...</option>
-                        @foreach ($title_lists as $title_list)
+                        @php
+                            $sorted_titles = $title_lists->sortBy('tit_order');
+                        @endphp
+                        @foreach ($sorted_titles as $title_list)
                         <option value="{{ $title_list->id }}" {{ $title_list->id == $user_lists->title_id ? 'selected' : '' }}>
                             {{ $title_list->tit_name }}
                         </option>

@@ -22,7 +22,10 @@
                     <div class="input-group">
                         <select class="form-control" id="title" name="title">
                             <option value="" selected disabled>เลือก</option>
-                            @foreach ($title_lists as $index => $title_list)
+                            @php
+                                $sorted_titles = $title_lists->sortBy('tit_order');
+                            @endphp
+                            @foreach ($sorted_titles as $index => $title_list)
                                 <option value="{{ $title_list->id }}">{{ $title_list->tit_name }}</option>
                             @endforeach
                         </select>
@@ -30,6 +33,7 @@
                     </div>
                 </div>
             </div>
+
 
 
             <div class="form-group row">
