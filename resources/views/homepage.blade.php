@@ -45,7 +45,7 @@
                             <img src="{{ asset($User->avatar) }}" width='50' height='50' class="img img-responsive"
                                 alt="">
                         @else
-                            No Avatar
+                            Not have Avatar
                         @endif
                     </td>
 
