@@ -1,32 +1,22 @@
 <?php
 
-namespace App\Models\User;
-namespace App\Models\Title;
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Title;
 
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\exam_se_camp;
-use RealRashid\SweetAlert\Facades\Alert;
-
 class UserController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $data['users'] = User::all();
+        $data['titles'] = Title::all();
 
-        $data['users'] = User::all(); //ดึงข้อมูล
-
-        return view('homepage',$data);
-
-
-
+        return view('homepage', $data);
     }
 
     /**
@@ -34,17 +24,15 @@ class UserController extends Controller
      */
     public function create()
     {
-        $title =Title::orderBy('id')->get();
-        return view('addpage',['titles'=>$title]);
+        $titles = Title::orderBy('id')->get();
+        return view('addpage', ['titles' => $titles]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-
     {
-
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
@@ -52,9 +40,6 @@ class UserController extends Controller
             'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Max 2MB
         ]);
 
-        $name = $request->input('name');
-        $email = $request->input('email');
-        $password = $request->input('password');
         $title_name = $request->input('title');
         $title = Title::where('tit_name', $title_name)->first();
 
@@ -64,43 +49,34 @@ class UserController extends Controller
             $user->title_id = $title->id;
         }
 
-        $user->name = $name;
-        $user->email = $email;
-        $user->password = $password;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password'));
 
-
-        $user->title_id = $title->id;
         if ($request->hasFile('avatar')) {
-            $fileName = time().$request->file('avatar')->getClientOriginalName();
-            $avatarPath = $request->file('avatar')->storeAs('avatars',$fileName,'public');
-            $user->avatar = '/storage/'.$avatarPath;
-        } else{
-            $user -> avatar = null;
+            $fileName = time() . $request->file('avatar')->getClientOriginalName();
+            $avatarPath = $request->file('avatar')->storeAs('avatars', $fileName, 'public');
+            $user->avatar = '/storage/' . $avatarPath;
         }
 
         $user->save();
-
 
         return redirect('/');
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        $user = User::findOrFail($id);
-        $titles = Title::all(); // Assuming you have a Title model
-        return view('users.edit', compact('user', 'titles'));
-    }
+    public function showedit($id)
+{
+        $user = User::find($id);
+        $titles = Title::all();
+        if (!$user) {
+            return redirect()->route('homepage')->with('error', 'User not found.');
+        }
+    return view('editpage', compact('user', 'titles'));
+}
+
 
     /**
      * Update the specified resource in storage.
@@ -109,41 +85,30 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
+            'email' => 'required|email|unique:users,email,' . $id,
             'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Max 2MB
         ]);
 
-        $name = $request->input('name');
-        $email = $request->input('email');
-        $password = $request->input('password');
         $title_name = $request->input('title');
         $title = Title::where('tit_name', $title_name)->first();
 
         $user = User::find($id);
 
-
         if ($title) {
             $user->title_id = $title->id;
         }
 
-        $user->name = $name;
-        $user->email = $email;
-        $user->password = $password;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
 
 
-
-        $user->title_id = $title->id;
         if ($request->hasFile('avatar')) {
-            $fileName = time().$request->file('avatar')->getClientOriginalName();
-            $avatarPath = $request->file('avatar')->storeAs('avatars',$fileName,'public');
-            $user->avatar = '/storage/'.$avatarPath;
-        } else{
-            $user -> avatar = null;
+            $fileName = time() . $request->file('avatar')->getClientOriginalName();
+            $avatarPath = $request->file('avatar')->storeAs('avatars', $fileName, 'public');
+            $user->avatar = '/storage/' . $avatarPath;
         }
 
         $user->save();
-
 
         return redirect('/');
     }
@@ -153,10 +118,8 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-
-        $users = User::findOrFail($id);
-
-        $users->delete();
+        $user = User::findOrFail($id);
+        $user->delete();
 
         return redirect('/');
     }

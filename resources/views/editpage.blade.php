@@ -8,35 +8,33 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" action="{{ route('update-user', ['id' => $user->id]) }}" method="post">
+        <form class="form-horizontal" action="{{ route('update-user', ['id' => $user->id]) }}" method="post" enctype="multipart/form-data">
             @csrf
+            @method('put')
             <div class="card-body">
                 <div class="form-group row">
                     <label for="title" class="col-sm-2 col-form-label">Title</label>
                     <div class="col-sm-10">
-                        <select class="form-control" id="title" name="title">
-                            <option value="">Select Title</option>
+                        <select  class="form-control" id="title" name="title">
+                            <option value="">เลือก</option>
                             @foreach($titles->sortBy('id') as $title)
-                            <option value="{{ $title->tit_name }}">{{ $title->tit_name }}</option>
+                                <option value="{{ $title->tit_name }}" {{ $user->title == $title->tit_name ? 'selected' : '' }}>{{ $title->tit_name }}</option>
                             @endforeach
                         </select>
-
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="name" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name" name="name" >
+                        <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="email" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email" name="email">
+                        <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
                     </div>
                 </div>
-
-
                 <div class="form-group row">
                     <label for="avatar" class="col-sm-2 col-form-label">Avatar</label>
                     <div class="col-sm-10">
@@ -46,7 +44,6 @@
                         </div>
                     </div>
                 </div>
-
                 <script>
                     function updateFileName(input) {
                         var fileName = input.files[0].name;
@@ -54,7 +51,6 @@
                         label.innerText = fileName;
                     }
                 </script>
-
             </div>
             <!-- /.card-body -->
             <div class="card-footer">

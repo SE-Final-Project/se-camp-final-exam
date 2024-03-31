@@ -35,7 +35,7 @@
 
                     </td>
                     <td>
-                        <a href="{{ url('/edit-user') }}" class="btn btn-warning">Edit</a>
+                        <a href="{{ url('/edit-user/' . $user->id) }}" class="btn btn-warning">Edit</a>
                         <form id="delete-form-{{ $user->id }}" method="post" action="{{ url('/delete-user/'.$user->id) }}" style="display: inline-block;">
                             @csrf
                             @method('DELETE')
