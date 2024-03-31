@@ -42,7 +42,7 @@
                             <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $user->id }})">Delete</button>
                         </form>
 
-                        <script>
+                        <script> //Sweet alret 65160324 Yanisa
                             function confirmDelete(userId) {
                                 Swal.fire({
                                     title: "Are you sure?",

@@ -17,6 +17,7 @@
                     <div class="col-sm-10">
                         <select  class="form-control" id="title" name="title">
                             <option value="">เลือก</option>
+                            {{-- show title  65160324 Yanisa --}}
                             @foreach($titles->sortBy('id') as $title)
                                 <option value="{{ $title->tit_name }}" {{ $user->title == $title->tit_name ? 'selected' : '' }}>{{ $title->tit_name }}</option>
                             @endforeach
