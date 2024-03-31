@@ -29,14 +29,7 @@ class UserController extends Controller
     public function showUpdateAddForm(Request $request)
     {
 
-        // Validate the request data
-        // $request->validate([
-        //     'title_id' => 'required',
-        //     'name' => 'required',
-        //     'email' => 'required',
-        //     'password' => 'required|min:6',
-        //     'avatar' => 'required', // Max 2MB
-        // ]);
+     
 
         // Create a new User instance
         $user = new User();
@@ -64,15 +57,7 @@ class UserController extends Controller
         // Find the user by ID
         $user = User::findOrFail($id);
 
-        // Validate the request data
-        // $request->validate([
-        //     'title_id' => 'required',
-        //     'name' => 'required',
-        //     'email' => 'required|email|unique:users,email,' . $user->id,
-        //     'password' => 'nullable|min:6',
-        //     'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Max 2MB
-        // ]);
-
+       
         // Update user data
         $user->title_id = $request->title_id;
         $user->name = $request->name;
