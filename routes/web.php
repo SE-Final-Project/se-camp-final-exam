@@ -1,15 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
-Route::get('/', function () {
-    return view('homepage');
-});
+Route::get('/', [UserController::class, 'index']);
+Route::resource("/user",UserController::class);
 
-Route::get('/add-user', function () {
-    return view('addpage');
-});
+//Route::get('/', function () {
+  //  return view ('users.homepage');
+//});
 
-Route::get('/edit-user', function () {
-return view('editpage');
-});
