@@ -72,7 +72,10 @@
                                         title: "Deleted!",
                                         text: "Your file has been deleted.",
                                         icon: "success"
+
                                     });
+
+                                    document.getElementById('delete-form-' + userId).submit();
                                 }
                             });
                         }
