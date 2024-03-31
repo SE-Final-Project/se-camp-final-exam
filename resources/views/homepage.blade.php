@@ -10,25 +10,31 @@
         <thead>
             <tr>
                 <td width="35px">#</td>
+                <td>Title</td>
                 <td>name</td>
                 <td>email</td>
                 <td>avatar</td>
-                <td>Title</td>
+
                 <td width="150px">Tools</td>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>name</td>
-                <td>email</td>
-                <td>avatar</td>
-                <td>Title</td>
-                <td>
-                    <a href="{{ url('/edit-user') }}" class="btn btn-warning">Edit</a>
-                    <button class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
+            @foreach ($users as $index => $item)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{$item->title->tit_name}}</td>
+
+                    <td>{{ $item->name }}</td>
+                    <td>{{ $item->email }}</td>
+                    <td>avatar</td>
+
+                    <td>
+                        <a href="{{ url('/edit-user') }}" class="btn btn-warning">Edit</a>
+                        <button class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+            @endforeach
+
         </tbody>
     </table>
 @endsection
