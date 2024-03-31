@@ -2,13 +2,15 @@
 
 @section('page_name', 'Add Users Data')
 @section('content')
+<!-- natapohn 65160218 -->
+
     <div class="card card-info">
         <div class="card-header">
             <h3 class="card-title">Add User Form</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" action="/insert" method="post">
+        <form class="form-horizontal" action="/insert" method="post" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                 <div class="form-group row">
