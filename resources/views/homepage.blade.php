@@ -31,6 +31,7 @@
 
             @foreach ($users as $User)
                 <tr>
+                    <td>{{$User->id}}</td>
                     <td>คุณ</td>
                     <td>{{ $User->name }}</td>
                     <td>{{ $User->email }}</td>
