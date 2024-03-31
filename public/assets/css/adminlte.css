@@ -392,6 +392,14 @@ h6, .h6 {
   font-size: 1rem;
 }
 
+.delete-form{
+  display: inline;
+}
+.delete-btn{
+  border: none;
+  background-color: transparent;
+}
+
 .lead {
   font-size: 1.25rem;
   font-weight: 300;
@@ -2527,7 +2535,7 @@ textarea.form-control {
 }
 
 .btn {
-  display: inline-block;
+  display: inline;
   font-weight: 400;
   color: #212529;
   text-align: center;
@@ -2770,6 +2778,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-danger {
+  display: inline;
   color: #fff;
   background-color: #dc3545;
   border-color: #dc3545;
@@ -53009,4 +53018,5 @@ a.text-muted:hover {
 .dark-mode .border-dark {
   border-color: #4b545c !important;
 }
+
 /*# sourceMappingURL=adminlte.css.map */
