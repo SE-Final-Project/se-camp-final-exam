@@ -31,7 +31,7 @@
 
             @foreach ($users as $User)
                 <tr>
-                    <td>{{$User->id}}</td>
+                    <td>{{ $User->id }}</td>
                     <td>คุณ</td>
                     <td>{{ $User->name }}</td>
                     <td>{{ $User->email }}</td>
@@ -47,10 +47,12 @@
 
                     <td>
                         <a href="{{ url('/edit-user/' . $User->id) }}" class="btn btn-warning">Edit</a>
-                        <form id="delete-form-{{ $User->id }}" method="post" action="{{ url('/delete-user/' . $User->id) }}" style="display: inline-block;">
+                        <form id="delete-form-{{ $User->id }}" method="post"
+                            action="{{ url('/delete-user/' . $User->id) }}" style="display: inline-block;">
                             @csrf
                             @method('DELETE')
-                            <button type="button" class="btn btn-danger" onclick="deleteUser('{{ $User->id }}')">Delete</button>
+                            <button type="button" class="btn btn-danger"
+                                onclick="deleteUser('{{ $User->id }}')">Delete</button>
                         </form>
                     </td>
 
@@ -66,8 +68,11 @@
                                 confirmButtonText: "Yes, delete it!"
                             }).then((result) => {
                                 if (result.isConfirmed) {
-                                    // Submit the form
-                                    document.getElementById('delete-form-' + userId).submit();
+                                    Swal.fire({
+                                        title: "Deleted!",
+                                        text: "Your file has been deleted.",
+                                        icon: "success"
+                                    });
                                 }
                             });
                         }
