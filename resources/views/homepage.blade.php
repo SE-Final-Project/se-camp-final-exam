@@ -27,9 +27,11 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
+                        {{-- ถ้ามีภาพ จะแสดงขนาดภาพที่สโตร์ไว้ที่ 120 --}}
                     @if ($user->avatar)
                         <img src="{{ asset('storage/avatars/'.$user->avatar) }}" width="120">
                     @else
+                    {{-- ถ้าไม่จะขึ้นว่า --}}
                         <span>ไม่มีรูป</span>
                     @endif
                     </td>

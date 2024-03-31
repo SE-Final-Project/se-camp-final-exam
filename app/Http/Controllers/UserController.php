@@ -16,6 +16,7 @@ class UserController extends Controller {
     //65160216 ญาณากร ทองนพคุณ
     //avatar null เพราะไม่จำเป็นต้องใส่
     //ฟังก์ชั่น เพิ่มผู้ใช่
+    // บังคับให้ผู้ใช้กรอก ชื่อ เมล พาส คำนำหน้า แต่ไม่จำเป็นต้องใส่รูป
     public function addUser(Request $req) {
         $data = $req->validate([
             'name' => 'required',
@@ -52,7 +53,7 @@ class UserController extends Controller {
     }
 
     //65160216 ญาณากร ทองนพคุณ
-    //ฟังก์ชั่น แก้ไขข้อมูลผู้ใช้
+    //ฟังก์ชั่น โชว์หน้าแก้ไขข้อมูลผู้ใช้
     public function editUser($id) {
         $user = User::findOrFail($id);
         $titles = Title::all();
@@ -63,6 +64,7 @@ class UserController extends Controller {
     //65160216 ญาณากร ทองนพคุณ
     //ฟังก์ชั่น อัพเดทข้อมูล
     //ห้ามใช้อีเมลเดิมของผู้ใช้คนอื่น
+    // บังคับให้ผู้ใช้กรอก ชื่อ เมล และคำนำหน้า ไม่จำเป็นต้องใส่รูป
     public function updateUser(Request $request, $id) {
         $data = $request->validate([
             'name' => 'required',
