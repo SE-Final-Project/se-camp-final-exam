@@ -92,7 +92,7 @@ class UserController extends Controller
 
     public function deleteUser($id)
     {
-    $users = User::findOrFail($id);
+    $users = User::find($id);
     $users->delete();
     return redirect()->route('homepage')->with('success', 'User has been deleted successfully.');
     }
