@@ -49,6 +49,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
+        //เช็คไฟล์ภาพ
         if ($request->hasFile('avatar')) {
             $fileName = time().$request->file('avatar')->getClientOriginalName();
             $avatarPath = $request->file('avatar')->storeAs('avatars',$fileName,'public');
@@ -65,7 +66,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'title_id' => 'required',
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required',//can 1 mail unique
             'password' => 'required',
             'avatar' => 'image',
         ]);

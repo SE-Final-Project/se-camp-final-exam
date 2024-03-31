@@ -17,11 +17,10 @@
                     <div class="col-sm-10">
                         <select class="form-control" id="title" name="title">
                             <option value="">Select Title</option>
-                            @foreach($titles->sortBy('tit_order') as $title)
+                            @foreach($titles as $title)
                                 <option value="{{ $title->id }}">{{ $title->tit_name }}</option>
                             @endforeach
                         </select>
-
                     </div>
                 </div>
                 <div class="form-group row">
