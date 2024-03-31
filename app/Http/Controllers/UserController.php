@@ -43,35 +43,42 @@ class UserController extends Controller
 
         $validator = Validator::make($request->all(), [
             'title_id' => 'required',
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'avatar' => 'image', // Example validation rule for avatar upload
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
 
-        //เก็บข้อมูล
         $user = new User();
-        $user->title_id = $request->input('title');
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->password = bcrypt($request->input('password'));
+        $title_name = $request->input('title');
+        $title = Title::where('tit_name', $title_name)->first();
+        if ($title) {
+            $user->title_id =  $title->id;
+
+        } else {
+            // $tit_name = $request['title'];
+            // if( $tit_name == "Ms."){
+            //     $user->title_id = '1';
+            // }else if($tit_name == "Mr."){
+            //     $user->title_id = '2';
+            // }
+        }
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
         //รับรูป
         if ($request->hasFile('avatar')) {
             $fileName = time().$request->file('avatar')->getClientOriginalName();
             $avatarPath = $request->file('avatar')->storeAs('avatars',$fileName,'public');
             $user->avatar = '/storage/'.$avatarPath;
         } else{
-
             $user -> avatar = null;
         }
         $user->save();
 
 
-        return redirect()->route('homepage')->with('success', 'User added successfully!');
+        return redirect()->route('homepage')->with('success', 'User has been added successfully!');
     }
 
 
@@ -79,7 +86,7 @@ class UserController extends Controller
 
         $validatedData = $request->validate([
             'title' => 'required',
-                'name' => 'required|string',
+            'name' => 'required|string',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'nullable|min:6',
             'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
@@ -87,9 +94,20 @@ class UserController extends Controller
 
 
         $user = User::findOrFail($id);
+        $title = Title::where('tit_name', 'title')->first();
+        if ($title) {
+            $user->title_id =  $title->id;
+
+        } else {
+            $tit_name = $validatedData['title'];
+            if( $tit_name == "Ms."){
+                $user->title_id = '1';
+            }else if($tit_name == "Mr."){
+                $user->title_id = '2';
+            }
+        }
 
 
-        $user->title = $validatedData['title'];
         $user->name = $validatedData['name'];
         $user->email = $validatedData['email'];
             if ($request->filled('password')) {
