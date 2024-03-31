@@ -14,7 +14,7 @@ class UserController extends Controller
 {
 
     //show hompage 65160360 sirichai paenpiriya
-    public function showHomePage()
+    public function HomePage()
     {
         $users = User::all();
         return view('homepage', ['users' => $users]);
