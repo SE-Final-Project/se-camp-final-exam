@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Usercontroller;
 
 //->=redirect
+//route 65160360 sirichai paenpiriya
 Route::get('/', [Usercontroller::class, 'showHomePage'])->name('homepage');
 Route::get('/add-user', [Usercontroller::class, 'create']);
 Route::get('/edit-user/{id}', [Usercontroller::class, 'showEdit']);

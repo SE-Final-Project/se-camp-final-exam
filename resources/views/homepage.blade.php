@@ -3,11 +3,13 @@
 
 @section('page_name', 'Users Data')
 @section('content')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- CODE HERE -->
+
     <div class="float-right pb-4">
         <a href="{{ url('/add-user') }}" class="btn btn-success"> Add User </a>
     </div>
+
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
@@ -62,45 +64,26 @@
                 </tr>
                 <script>
                     function deleteUser() {
-                        const swalWithBootstrapButtons = Swal.mixin({
-                            customClass: {
-                                confirmButton: "btn btn-success",
-                                cancelButton: "btn btn-danger"
-                            },
-                            buttonsStyling: false
-                        });
-                        swalWithBootstrapButtons.fire({
+                        Swal.fire({
                             title: "Are you sure?",
                             text: "You won't be able to revert this!",
                             icon: "warning",
                             showCancelButton: true,
-                            confirmButtonText: "Yes, delete it!",
-                            cancelButtonText: "No, cancel!",
-                            reverseButtons: true
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Yes, delete it!"
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                swalWithBootstrapButtons.fire({
+                                Swal.fire({
                                     title: "Deleted!",
                                     text: "Your file has been deleted.",
                                     icon: "success"
-                                });
-                            } else if (
-                                /* Read more about handling dismissals below */
-                                result.dismiss === Swal.DismissReason.cancel
-                            ) {
-                                swalWithBootstrapButtons.fire({
-                                    title: "Cancelled",
-                                    text: "Your imaginary file is safe :)",
-                                    icon: "error"
                                 });
                             }
                         });
                     }
                 </script>
             @endforeach
-
-
-
         </tbody>
     </table>
 @endsection

@@ -16,20 +16,20 @@ class UserController extends Controller
     //show hompage 65160360 sirichai paenpiriya
     public function showHomePage()
     {
-        $users ['users']= User::orderBy('id','asc');
-        return view('homepage', $users);
+        $users = User::all();
+        return view('homepage', ['users' => $users]);
     }
     //show add page 65160360 sirichai paenpiriya
     public function Create()
     {
-        $titles['titles'] = Title::orderBy('id')->get();
-        return view('addpage',  $titles);
+        $titles = Title::orderBy('id')->get();
+        return view('addpage', ['titles' => $titles]);
     }
     //show add edit page 65160360 sirichai paenpiriya
     public function showEdit($id)
     {
         $user = User::find($id);
-        $titles = Title::orderBy('id','asc');
+        $titles = Title::all();
         return view('editpage', compact('user', 'titles'));
     }
 
@@ -89,9 +89,10 @@ class UserController extends Controller
     }
     //delete data 65160360 sirichai paenpiriya
 
-    public function deleteUser(User $users)
+    public function deleteUser($id)
     {
-    $user->delete();
+    $users = User::findOrFail($id);
+    $users->delete();
     return redirect()->route('homepage')->with('success', 'User has been deleted successfully.');
     }
 
