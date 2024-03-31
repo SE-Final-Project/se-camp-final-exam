@@ -13,10 +13,8 @@ class UserController extends Controller
 {
     public function showHomePage()
     {
-        //ดึงdataจากdatabase
         $users = User::all();
 
-        //ไปหน้า homepage
         return view('homepage', ['users' => $users]);
     }
 
@@ -46,7 +44,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
-            'avatar' => 'image', // Example validation rule for avatar upload
+            'avatar' => 'image',
         ]);
 
 
@@ -94,17 +92,18 @@ class UserController extends Controller
 
 
         $user = User::findOrFail($id);
-        $title = Title::where('tit_name', 'title')->first();
+        $title_name = $request->input('title');
+        $title = Title::where('tit_name', $title_name)->first();
         if ($title) {
             $user->title_id =  $title->id;
 
         } else {
-            $tit_name = $validatedData['title'];
-            if( $tit_name == "Ms."){
-                $user->title_id = '1';
-            }else if($tit_name == "Mr."){
-                $user->title_id = '2';
-            }
+        //     $tit_name = $validatedData['title'];
+        //     if( $tit_name == "Ms."){
+        //         $user->title_id = '1';
+        //     }else if($tit_name == "Mr."){
+        //         $user->title_id = '2';
+        //     }
         }
 
 

@@ -1,5 +1,6 @@
 @extends('layouts.default')
 
+<?php use App\Models\Title; ?>
 @section('page_name', 'Users Data')
 @section('content')
     <div class="float-right pb-4">
@@ -9,6 +10,7 @@
         <thead>
             <tr>
                 <th width="35px">#</th>
+                <th>Title</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Avatar</th>
@@ -19,6 +21,12 @@
             @foreach($users as $user)
                 <tr>
                     <td>{{ $user->id }}</td>
+                    <?php $title = Title::where('id', $user->title_id)->first(); ?>
+                    @if($title)
+                        <td>{{ $title->tit_name }}</td>
+                    @else
+                        //
+                    @endif
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
