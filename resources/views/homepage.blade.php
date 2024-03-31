@@ -10,10 +10,10 @@
         <thead>
             <tr>
                 <td width="35px">#</td>
+                <td>Title</td>
                 <td>name</td>
                 <td>email</td>
                 <td>avatar</td>
-                <td>Title</td>
                 <td width="150px">Tools</td>
             </tr>
         </thead>
@@ -29,6 +29,21 @@
                     <button class="btn btn-danger">Delete</button>
                 </td>
             </tr>
+            {{-- @foreach ($users as $user)
+            <tr>
+                <td>{{ $user->id }}</td>
+                <td>{{ $user->title }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
+                <td>
+                    @if ($user->avatar)
+                        <img src="{{ asset($user->avatar) }}" width='50' height='50' class="img img-responsive" alt="">
+                    @else
+                        No Avatar
+                    @endif
+                </td>
+            </tr>
+            @endforeach --}}
         </tbody>
     </table>
 @endsection
