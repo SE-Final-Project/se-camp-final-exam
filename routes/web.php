@@ -1,15 +1,14 @@
 <?php
-
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('homepage');
-});
+Route::get('/', [UserController::Class , 'index']);
 
-Route::get('/add-user', function () {
-    return view('addpage');
-});
+Route::get('/add-user', [UserController::Class , 'addUser']);
+Route::post('/submit_add-user', [UserController::Class , 'keep']);
 
-Route::get('/edit-user', function () {
-return view('editpage');
-});
+Route::post('/submit_edit-user/{id}', [UserController::Class , 'updateUser']);
+Route::get('/edit-user/{id}', [UserController::Class , 'editUser']);
+
+
+Route::get('/destroy-user/{id}', [UserController::Class , 'destroyUser']);
