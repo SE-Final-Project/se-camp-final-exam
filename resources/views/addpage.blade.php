@@ -8,15 +8,59 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" action="{{ url('/') }}" method="post">
+        <form class="form-horizontal" action="{{ route('users.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
+
                 <div class="form-group row">
-                    <label for="input01" class="col-sm-2 col-form-label">Example Input</label>
+                    <label for="input_Title" class="col-sm-2 col-form-label">Title</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="input01">
+                        <select name="title" class="form-control">
+                            <option value="option 1">Option 1</option>
+                            <option value="option 2">Option 2</option>
+                            <option value="option 3">Option 3</option>
+                            <option value="option 4">Option 4</option>
+                            <option value="option 5">Option 5</option>
+                        </select>
                     </div>
                 </div>
+
+                <div class="form-group row">
+                    <label for="input_name" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="name" class="form-control" id="input_name">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="input_email" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="email" class="form-control" id="input_email">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="input_password" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="password" class="form-control" id="input_password">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="input_avatar" class="col-sm-2 col-form-label">Avatar</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" name="avatar" class="custom-file-input" id="exampleInputFile">
+                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text">Upload</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
@@ -27,5 +71,4 @@
             <!-- /.card-footer -->
         </form>
     </div>
-    <!-- /.card -->
 @endsection
