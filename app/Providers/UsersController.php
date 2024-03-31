@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class userscontroller extends Controller
 {
-    /**
+    /**s
      * Display a listing of the resource.
      */
     public function index()
@@ -29,7 +29,9 @@ class userscontroller extends Controller
     public function create()
     {
         $data['titles'] = Title::all();
-        $data['users'] = User::all();//ดึงข้อมูลจากModel allคือการ getdataทั้งหมด
+        $data['users'] = User::all();
+       // $titles = Title::orderBy('id')->get();
+        //$data['users'] = User::all(); //ดึงข้อมูลจากModel allคือการ getdataทั้งหมด
         return view('addpage',$data);
     }
 
@@ -43,7 +45,6 @@ class userscontroller extends Controller
         $name = $request->input('name');
         $email = $request->input('email');
         $password = $request->input('password');
-        $avatarPath = $request->file('avatar');
         $title_name = $request->input('title');
         $title = Title::where('tit_name', $title_name)->first();
 
@@ -62,9 +63,51 @@ class userscontroller extends Controller
             $avatarPath = $request->file('avatar')->storeAs('avatars',$fileName,'public');
             $User->avatar = '/storage/'.$avatarPath;
         }
+        //else{
+        //     $User -> avatar = null;
+        // }
 
+            // if($request -> hasFile('avata')){
+            //     $fileName = time().$request ->file('avata')->getClientOriginalName();
+            //     $avataPath = $request ->file('avata')->storeAs('avata',$fileName,'public');
+            //     $User -> avata = '/strorage/'.$avataPath;
+            // }
             $User -> save();
         return Redirect::to('homepage');
+        // $name = $request->input('name');
+        // $email = $request->input('email');
+        // $password = $request->input('password');
+        // $title_name = $request->input('title');
+        // $title = Title::where('tit_name', $title_name)->first();
+
+        // $User = new User;
+
+        // if ($title) {
+        //     $User->title_id = $title->id;
+        // }
+
+        // $User->name = $name;
+        // $User->email = $email;
+        // $User->password = $password;
+        // $User->password = bcrypt($request->password);
+        // //image
+        // if ($request->hasFile('avatar')) {
+        //     $fileName = time().$request->file('avatar')->getClientOriginalName();
+        //     $avatarPath = $request->file('avatar')->storeAs('avatars',$fileName,'public');
+        //     $User->avatar = '/storage/'.$avatarPath;
+        // }
+        // else{
+        //     $User -> avatar = null;
+        // }
+
+            // if($request -> hasFile('avatar')){
+            //     $fileName = time().$request ->file('avatar')->getClientOriginalName();
+            //     $avataPath = $request ->file('avatar')->storeAs('avatars',$fileName,'public');
+            //     $User -> avatar = '/strorage/'.$avataPath;
+            // }
+        // $User -> save();
+        // return Redirect::to('/homepage');
+
     }
 
     /**
@@ -72,6 +115,9 @@ class userscontroller extends Controller
      */
     public function show(string $id)
     {
+
+        // $data['user_email'] = User::find($id);
+        // $data['users'] = User::all();
         $User = User::all();
 
         return view('homepage', ['users' => $User]);
@@ -86,6 +132,10 @@ class userscontroller extends Controller
     {
         $User = User::find($id);
         $titles = Title::all();
+        // $id = $request->DB::select('select * from User where active = ?', [1])('id');
+        // if ($titles) {
+        //     $User->title_id = $titles->id;
+        // }
         if (!$User) {
             return redirect()->route('homepage')->with('error', 'User not found.');
         }
@@ -101,7 +151,6 @@ class userscontroller extends Controller
         $name = $request->input('name');
         $email = $request->input('email');
         $password = $request->input('password');
-        $avatarPath = $request->file('avatar');
         $title_name = $request->input('title');
         $title = Title::where('tit_name', $title_name)->first();
 
@@ -120,6 +169,15 @@ class userscontroller extends Controller
             $avatarPath = $request->file('avatar')->storeAs('avatars',$fileName,'public');
             $User->avatar = '/storage/'.$avatarPath;
         }
+        // else{
+        //     $User -> avatar = null;
+        // }
+
+            // if($request -> hasFile('avata')){
+            //     $fileName = time().$request ->file('avata')->getClientOriginalName();
+            //     $avataPath = $request ->file('avata')->storeAs('avata',$fileName,'public');
+            //     $User -> avata = '/strorage/'.$avataPath;
+            // }
             $User -> save();
         return Redirect::to('homepage');
 

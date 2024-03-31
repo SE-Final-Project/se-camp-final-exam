@@ -1,17 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\userscontroller;
-Route::resource('homepage',userscontroller::class);
-//Route::resource('titles',Controller::class);
-// Route::get('/homepage', function () {
-//     return view('homepage');
-// });
+use App\Http\Controllers\UsersController;
 
-Route::get('/add-user', function () {
-    return view('addpage');
-});
-
-// Route::get('/edit-user', function () {
-// return view('editpage');
-// });
+Route::get('/homepage',[UsersController::class,'index'])->name('homepage');
+Route::get('/add-user',[UsersController::class,'create']);
+Route::get('/update-user',[UsersController::class,'update']);
+Route::get('/edit-user/{id}',[UsersController::class,'showedit'])->name('showedit');
+Route::post('/add-user',[UsersController::class,'store']);
+Route::delete('/delete-user/{id}',[UsersController::class,'destroy']);
+Route::put('/update-user/{id}', [UsersController::class, 'update'])->name('update-user');
