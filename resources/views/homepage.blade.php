@@ -31,15 +31,7 @@
 
             @foreach ($users as $User)
                 <tr>
-                    <td>{{ $User->id }}</td>
-                    <?php $title = Title::where('id', $User->title_id)->first(); ?>
-                    @if ($title)
-                        {
-                        <td>{{ $title->tit_name }}</td>
-                        }
-                    @else
-                        <td></td>
-                    @endif
+                    <td></td>
                     <td>{{ $User->name }}</td>
                     <td>{{ $User->email }}</td>
                     <td>
