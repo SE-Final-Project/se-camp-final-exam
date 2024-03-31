@@ -8,15 +8,41 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" action="{{ url('/') }}" method="post">
+        <form class="form-horizontal" action="{{ url('/edit-user-home') }}/{{$User->id}}" method="post">
             @csrf
             <div class="card-body">
                 <div class="form-group row">
-                    <label for="input01" class="col-sm-2 col-form-label">Example Input</label>
+                    <label for="input01" class="col-sm-2 col-form-label">Title</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="input01">
+                        <select class="form-control" id="input01" name="title_id">
+                            <option >เลือก</option>
+                            @foreach ( $Title as $index )
+                            <option value="{{$index->id}}">{{$index->tit_name}}</option>
+
+                            @endforeach
+                        </select>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label for="input01" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="input01" name="name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="input01" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="input01" name="email">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="input01" class="col-sm-2 col-form-label">Avatar</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="input01" name="avatar">
+                    </div>
+                </div>
+
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
