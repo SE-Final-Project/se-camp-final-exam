@@ -1,6 +1,7 @@
 @extends('layouts.default')
 
 <?php use App\Models\Title; ?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @section('page_name', 'Users Data')
 @section('content')
     <div class="float-right pb-4">

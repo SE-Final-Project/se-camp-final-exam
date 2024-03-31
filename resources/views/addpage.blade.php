@@ -1,5 +1,5 @@
 @extends('layouts.default')
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @section('page_name', 'Add Users Data')
 @section('content')
     <div class="card card-info">
@@ -49,11 +49,24 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                <button type="submit" class="btn btn-info">Submit</button>
+                <button type="submit" class="btn btn-info" onclick="on()">Submit</button>
                 <a href="{{ route('homepage') }}" class="btn btn-default float-right">Cancel</a>
                 <button type="reset" class="btn btn-default float-right mr-2">Reset</button>
             </div>
+            <script>
+                function on(){
+                    Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500
+                    });
+                }
+            </script>
             <!-- /.card-footer -->
+
+
         </form>
     </div>
     <!-- /.card -->
