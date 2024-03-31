@@ -8,13 +8,36 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" action="{{ url('/') }}" method="post">
+        <form class="form-horizontal" action="{{ url('/submit_edit-user') }}/{{ $User->id }}" method="post">
             @csrf
             <div class="card-body">
                 <div class="form-group row">
-                    <label for="input01" class="col-sm-2 col-form-label">Example Input</label>
+                    <lable for="input01" class="col-sm-2 col-form-label">Title</lable>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="input01">
+                        <select class="form-control" id="input01" name="title_id">
+                            <option>เลือก</option>
+                            @foreach ($Title as $index )
+                            <option value="{{$index->id}}">{{$index->tit_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <lable for="input02" class="col-sm-2 col-form-label">Name</lable>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="input02" name="name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <lable for="input03" class="col-sm-2 col-form-label">Email</lable>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="input03" name="email">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <lable for="input05" class="col-sm-2 col-form-label">Avatar</lable>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="input05" name="avatar">
                     </div>
                 </div>
             </div>
