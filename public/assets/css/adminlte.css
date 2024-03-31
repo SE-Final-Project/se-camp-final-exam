@@ -10,6 +10,22 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+ *,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 2rem 1.5rem;
+  font: 1rem/1.5 "PT Sans", Arial, sans-serif;
+  color: #5a5a5a;
+}
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -53009,4 +53025,14 @@ a.text-muted:hover {
 .dark-mode .border-dark {
   border-color: #4b545c !important;
 }
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
 /*# sourceMappingURL=adminlte.css.map */
+
