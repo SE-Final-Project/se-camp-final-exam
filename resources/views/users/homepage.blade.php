@@ -23,7 +23,7 @@
                     <td>{{$index+1}}</td>
                     <td>{{$user -> u_tit}}</td>
                     <td>{{$user -> u_name}}</td>
-                    <td>{{$user -> u_email}}</td>
+                    <td>{{$user -> u_email}}</td> 
                     <td><img src="{{$user->u_avatar}}" alt="User Avatar" width="100px" height = "100px"></td>
                     <td>
                         <a href="{{ url('/edit-user') }}" class="btn btn-warning">Edit</a>
