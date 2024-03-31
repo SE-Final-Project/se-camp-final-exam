@@ -10,14 +10,16 @@
         {{-- ส่วนหัวตาราง --}}
         <thead>
             <tr>
-                <td width="20px">#</td>
+                
+                <td width="35px">#</td>
                 <td>Title</td>
                 <td>Name</td>
                 <td>Email</td>
                 <td>Avatar</td>
-                <td width="180px">Tools</td>
+                <td width="150px">Tools</td>
             </tr>
         </thead>
+        {{-- แสดงข้อมูลผู้ใช้ในฐานข้อมูล --}}
         <tbody>
             @foreach ($users as $user)
                 <tr>
