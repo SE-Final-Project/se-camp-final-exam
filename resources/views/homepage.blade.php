@@ -1,34 +1,43 @@
 @extends('layouts.default')
 
 @section('page_name', 'Users Data')
+
 @section('content')
-    <!-- CODE HERE -->
+
     <div class="float-right pb-4">
-        <a href="{{ url('/add-user') }}" class="btn btn-success"> Add User </a>
+        <a href="{{ url('/add-user') }}" class="btn btn-success">Add User</a>
     </div>
+
     <table class="table table-bordered">
         <thead>
             <tr>
-                <td width="35px">#</td>
-                <td>name</td>
-                <td>email</td>
-                <td>avatar</td>
-                <td>Title</td>
-                <td width="150px">Tools</td>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Avatar</th>
+                <th scope="col" width="150px">Tools</th>
             </tr>
         </thead>
         <tbody>
+            @foreach($items as $item)
             <tr>
-                <td>1</td>
-                <td>name</td>
-                <td>email</td>
-                <td>avatar</td>
-                <td>Title</td>
+                <th scope="row">{{ $item->id }}</th>
+                <td>{{ $item->name }}</td>
+                <td>{{ $item->email }}</td>
                 <td>
-                    <a href="{{ url('/edit-user') }}" class="btn btn-warning">Edit</a>
-                    <button class="btn btn-danger">Delete</button>
+                    @if($item->avatar)
+                        <img src="{{ asset('storage/'.$item->avatar) }}" alt="Avatar" style="max-width: 100px; max-height: 100px;">
+                    @else
+                        <img src="{{ asset('images/default-avatar.jpg') }}" alt="Default Avatar" style="max-width: 100px; max-height: 100px;">
+                    @endif
+                </td>
+                <td>
+                    <a href="{{ url('/edit-user/'.$item->id) }}" class="btn btn-warning">Edit</a>
+                    <a href="{{ url('/delete-user/'.$item->id) }}" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
+            @endforeach
         </tbody>
     </table>
+
 @endsection
