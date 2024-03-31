@@ -54,35 +54,31 @@
 
                     <td>
                         <a href="{{ url('/edit-user/' . $User->id) }}" class="btn btn-warning">Edit</a>
-                        <form method="post" action="{{ url('/delete-user/' . $User->id) }}" style="display: inline-block;">
+                        <form id="delete-form-{{ $User->id }}" method="post" action="{{ url('/delete-user/' . $User->id) }}" style="display: inline-block;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="deleteUser()">Delete</button>
-
+                            <button type="button" class="btn btn-danger" onclick="deleteUser('{{ $User->id }}')">Delete</button>
                         </form>
                     </td>
-                </tr>
-                <script>
-                    function deleteUser() {
-                        Swal.fire({
-                            title: "Are you sure?",
-                            text: "You won't be able to revert this!",
-                            icon: "warning",
-                            showCancelButton: true,
-                            confirmButtonColor: "#3085d6",
-                            cancelButtonColor: "#d33",
-                            confirmButtonText: "Yes, delete it!"
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                Swal.fire({
-                                    title: "Deleted!",
-                                    text: "Your file has been deleted.",
-                                    icon: "success"
-                                });
-                            }
-                        });
-                    }
-                </script>
+
+                    <script>
+                        function deleteUser(userId) {
+                            Swal.fire({
+                                title: "Are you sure?",
+                                text: "You won't be able to revert this!",
+                                icon: "warning",
+                                showCancelButton: true,
+                                confirmButtonColor: "#3085d6",
+                                cancelButtonColor: "#d33",
+                                confirmButtonText: "Yes, delete it!"
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    // Submit the form
+                                    document.getElementById('delete-form-' + userId).submit();
+                                }
+                            });
+                        }
+                    </script>
             @endforeach
         </tbody>
     </table>
