@@ -22,7 +22,7 @@ class UserController extends Controller
     //show add page 65160360 sirichai paenpiriya
     public function Create()
     {
-        $titles = Title::orderBy('id')->get();
+        $titles = Title::get();
         return view('addpage', ['titles' => $titles]);
     }
     //show add edit page 65160360 sirichai paenpiriya
