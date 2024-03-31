@@ -10,6 +10,10 @@ use App\Models\Title;
 
 class UserController extends Controller
 {
+    /*
+    65160241 Amonpan Noicharoen
+    Create a controller for configuring and sending pages.
+    */
     public function home_data()
     {
         $user_data = User::all();

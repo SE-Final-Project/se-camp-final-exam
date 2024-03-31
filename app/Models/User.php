@@ -16,6 +16,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+   
     public $table = "users";
     public $timestamps = false;
     public $primaryKey = "id";

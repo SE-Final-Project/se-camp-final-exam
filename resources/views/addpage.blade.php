@@ -12,6 +12,10 @@
             @csrf
             <div class="card-body mt-2">
                 <div class="form-group row">
+                    /*
+                    65160241 Amonpan Noicgaroen
+                    Create a table for filling in the data addition section.
+                    */
 
                     <label for="input-title" class="col-sm-2 col-form-label my-2">Title : </label>
 
@@ -19,7 +23,7 @@
                         <select class="form-control " name="input-title">
                             <option value="">เลือก</option>
                             @foreach ($titles as $tit_data)
-                            <option value="{{ $tit_data['title_id'] }}">{{ $tit_data['tit_name'] }}</option>
+                                <option value="{{ $tit_data['title_id'] }}">{{ $tit_data['tit_name'] }}</option>
                             @endforeach
 
                         </select>
@@ -43,7 +47,7 @@
                     </div>
 
 
-                    
+
                 </div>
             </div>
             <!-- /.card-body -->

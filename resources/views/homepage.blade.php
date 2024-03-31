@@ -4,6 +4,10 @@
 @section('content')
     <!-- CODE HERE -->
     <div class="float-right pb-4">
+        /*
+        65160241 Amonpan Noicharoen
+        Add user information button
+        */
         <a href={{ url('/insert') }} class="btn btn-success"> Add User </a>
     </div>
     <table class="table table-bordered">
@@ -18,6 +22,10 @@
             </tr>
         </thead>
         <tbody>
+            /*
+            65160241 Amonpan Noicharoen
+            Create a loop for displaying data.
+            */
             <?php $id = null; ?>
             @foreach ($users as $data)
                 <tr>
@@ -48,6 +56,11 @@
                     </td>
 
                     <td>
+
+                        /*
+                        65160241 Amonpan Noicharoen
+                        Added links for edit and delete buttons.
+                        */
                         <a href={{ url('/edit-user/' . $data['id']) }} class="btn btn-warning">Edit</a>
                         <?php $id = $data['id']; ?>
                         <button class="btn btn-danger" onclick="delete_data()">Delete</button>
@@ -57,6 +70,10 @@
 
         </tbody>
     </table>
+    /*
+    65160241 Amonpan Noicharoen
+    add sweetalert
+    */
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function delete_data() {
