@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Title extends Model
 {
+    use HasFactory;
     protected $fillable = ['tit_name', 'tit_order'];
 }
