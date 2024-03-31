@@ -65,7 +65,7 @@ class UserController extends Controller {
     //ฟังก์ชั่น อัพเดทข้อมูล
     //ห้ามใช้อีเมลเดิมของผู้ใช้คนอื่น
     // บังคับให้ผู้ใช้กรอก ชื่อ เมล และคำนำหน้า ไม่จำเป็นต้องใส่รูป
-    public function updateUser(Request $request, $id) {
+    public function rewriteUser(Request $request, $id) {
         $data = $request->validate([
             'name' => 'required',
             'email' => 'required|unique:users,email,' . $id,

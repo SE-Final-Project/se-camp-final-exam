@@ -18,7 +18,7 @@ Route::get('/add-user', function () {
 
 // Edit
 Route::get('/edit-user/{id}', [UserController::class, 'editUser'])->name('edit.user');
-Route::put('/update-user/{id}', [UserController::class, 'updateUser'])->name('update.user');
+Route::put('/rewrite-user/{id}', [UserController::class, 'rewriteUser'])->name('rewrite.user');
 
 Route::get('/edit-user', function () {
 return view('editpage');

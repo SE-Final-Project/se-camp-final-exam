@@ -8,7 +8,7 @@
         <div class="card-header">
             <h3 class="card-title">Edit User Form</h3>
         </div>
-        <form class="form-horizontal" action="{{ route('update.user', $user->id) }}" method="POST"
+        <form class="form-horizontal" action="{{ route('rewrite.user', $user->id) }}" method="POST"
             enctype="multipart/form-data">
             @csrf
             @method('PUT')
