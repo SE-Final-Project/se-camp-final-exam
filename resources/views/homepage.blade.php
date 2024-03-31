@@ -10,25 +10,35 @@
         <thead>
             <tr>
                 <td width="35px">#</td>
+                <td>Title</td>
                 <td>name</td>
                 <td>email</td>
-                <td>avatar</td>
-                <td>Title</td>
+                <td>avata</td>
                 <td width="150px">Tools</td>
             </tr>
         </thead>
         <tbody>
+            {{-- //65160092 ธนภัทร - ไว้แสดงข้อมูลจากฐานข้อมูล --}}
+            @foreach ($users as $user)
             <tr>
-                <td>1</td>
-                <td>name</td>
-                <td>email</td>
-                <td>avatar</td>
-                <td>Title</td>
+                <td>{{ $user->id }}</td>
+                <td>{{ $user->title }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
                 <td>
+                    {{-- //65160092 ธนภัทร - ไว้แสดงข้อมูลจากฐานข้อมูล --}}
+                    @if ($user->avatar)
+                        <img src="{{ asset($user->avatar) }}" class="img img-responsive" alt="">
+                    @else
+                        No Avatar
+                    @endif
+                </td>
+            </tr>
+            @endforeach
+            <td>
                     <a href="{{ url('/edit-user') }}" class="btn btn-warning">Edit</a>
                     <button class="btn btn-danger">Delete</button>
                 </td>
-            </tr>
         </tbody>
     </table>
 @endsection

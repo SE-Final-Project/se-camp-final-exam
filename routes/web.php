@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('homepage');
@@ -13,3 +14,5 @@ Route::get('/add-user', function () {
 Route::get('/edit-user', function () {
 return view('editpage');
 });
+//65160092 ธนภัทร - ไว้เปิดหน้า เว็บหลัก
+Route::resource("/",UserController::class);
