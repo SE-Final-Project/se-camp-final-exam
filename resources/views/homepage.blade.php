@@ -8,6 +8,7 @@
         <thead>
             <tr>
                 <td width="35px">#</td>
+                <td>Title</td>
                 <td>name</td>
                 <td>email</td>
                 <td>avatar</td>
@@ -15,18 +16,32 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($users as $item)
-                    <tr>
-                        <td>{{ $item->id }}</td>
-                        <td>{{ $item->name }}</td>
-                        <td>{{ $item->email }}</td>
-                        <td>{{ $item->avatar }}</td>
-                        <td>
-                            <a href="#" class="btn btn-warning">Edit</a>
-                            <a href="#" class="btn btn-danger">Delete</a>
-                        </td>
-                    </tr>
-                @endforeach
+
+            @foreach ($user as $item)
+                <tr>
+                    <td>{{$item->id}}</td>
+                    <td>คุณ</td>
+                    <td>{{$item->name}}</td>
+                    <td>{{$item->email}}</td>
+                    <td>ไม่มีรูป</td>
+                    <td>
+                        <a href="edit" class="btn btn-warning">Edit</a>
+                        <a href="delete" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            @endforeach
+            {{-- <tr>
+                <td>1</td>
+                <td>คุณ</td>
+                <td>latthisit</td>
+                <td>65160352@gmail.com</td>
+                <td>ไม่มีรูป</td>
+                <td>
+                    <a href="edit" class="btn btn-warning">Edit</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
+                </td>
+            </tr> --}}
+
         </tbody>
     </table>
 @endsection
