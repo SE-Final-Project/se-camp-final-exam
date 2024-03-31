@@ -1,7 +1,9 @@
 <?php
-use App\Models\Title;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+//65160219 นางสาวดวงกมล ลืออริยทรัพย์
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +20,13 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 //http://localhost:8000/api/titles
-Route::get('titles', function(){
-    console.log('asd');
-    return response()->json(Title::all());
+
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });
+
+Route::get('users', function(){
+    return response()->json(User::all());
+});
+

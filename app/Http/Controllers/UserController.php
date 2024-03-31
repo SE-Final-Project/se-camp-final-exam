@@ -47,7 +47,7 @@ class UserController extends Controller
         $User->title_id = $title_id;
         $User->name = $name;
         $User->email = $email;
-        //$User->avatar = $request->file('avatar')->store('public/avatar');
+        $User->avatar = $request->file('avatar')->store('public/avatar');
         $User->save();
         // use Illuminate\Support\Facades\Redirect;
         return Redirect::to('homepage');

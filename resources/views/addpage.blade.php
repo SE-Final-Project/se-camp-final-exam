@@ -20,7 +20,7 @@
                         <?php
                         $c = mysqli_connect('localhost', 'root', '', 'final_exam_camp_db');
                         mysqli_query($c, 'SET NAMES UTF8');
-                        $sql = ' SELECT * FROM titles ';
+                        $sql = ' SELECT * FROM titles ORDER BY tit_order ASC; ';
                         $q = mysqli_query($c, $sql);
                         echo "<select name='titles' class='form-control'>
                               <option value=''> เลือก </option>";
