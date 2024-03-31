@@ -8,20 +8,47 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" action="{{ url('/') }}" method="post">
+        <form class="form-horizontal" action="{{ route('add-user') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                 <div class="form-group row">
-                    <label for="input01" class="col-sm-2 col-form-label">Example Input</label>
+                    <label for="input01" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="input01">
+                        <input type="text" class="form-control" id="input01" name="name">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="input02" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="input02" name="email">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="input03" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="input03" name="password">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="image" class="col-sm-2 col-form-label">Image</label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control-file" id="image" name="image">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="input04" class="col-sm-2 col-form-label">Title</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="input04" name="title">
                     </div>
                 </div>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
                 <button type="submit" class="btn btn-info">Submit</button>
-                <a href="{{ url('/') }}" class="btn btn-default float-right">Cancel</a>
+                <a href="{{ route('home') }}" class="btn btn-default float-right">Cancel</a>
                 <button type="reset" class="btn btn-default float-right mr-2">Reset</button>
             </div>
             <!-- /.card-footer -->
@@ -29,3 +56,7 @@
     </div>
     <!-- /.card -->
 @endsection
+
+
+
+{{-- 65160231 พงศ์พิสูทธิ์ เคนชาติ --}}
