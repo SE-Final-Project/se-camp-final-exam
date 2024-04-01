@@ -29,16 +29,15 @@ class UserController extends Controller {
             $validatedData['avatar'] = basename($avatarPath);
         }
 
-        $validatedData['password'] = bcrypt($validatedData['password']);
-
         $user = new User($validatedData);
-        $user->save();
+        $user->save();  
 
         return redirect()->route('home');
     }
 
     public function showAddPage() {
         $titles = Title::all();
+
         return view('addpage', compact('titles'));
     }
 
@@ -75,6 +74,7 @@ class UserController extends Controller {
 
         if ($request->isMethod('PUT')) {
             $user->update($validatedData);
+            
             return redirect()->route('home');
         }
     }

@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Usercontroller;
 
-Route::get('/edit-user/{id}', [Usercontroller::class, 'editUser'])->name('edit.user');
 Route::put('/update-user/{id}', [Usercontroller::class, 'updateUser'])->name('update.user');
+
+Route::get('/edit-user/{id}', [Usercontroller::class, 'editUser'])->name('edit.user');
 
 Route::get('/edit-user', function () {
 return view('editpage');
